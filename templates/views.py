@@ -1,4 +1,37 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+
+def login(request):
+
+    if request.method == "POST":
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        print("User logged in")
+
+        print("Email: ", email)
+        print("Password: ", password)
+
+        return redirect("/index.html")
+
+    else:
+        return render(request, "login.html")
+
+
+def register(request):
+
+    if request.method == "POST":
+
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        print("User created")
+        print("Email: ", email)
+        print("Password: ", password)
+
+        return redirect("/login")
+    else:
+        return render(request, "Register.html")
 
 
 def index(request):
@@ -99,3 +132,7 @@ def search(request):
 
 def why_choose_us(request):
     return render(request, "why-us.html")
+
+
+def add_blog(request):
+    return render(request, "add-blog.html")

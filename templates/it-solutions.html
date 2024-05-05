@@ -56,8 +56,8 @@
                     <a href="request-quote.html" class="btn action__btn-contact">Request A Quote</a>
                   </li>
                   <li>
-                    <button class="action__btn action__btn-login open-login-popup">
-                      <i class="icon-user"></i><span>Login</span>
+                    <button   onclick="window.location.href='login.html'" class="action__btn action__btn-login open-login-popup">
+                      <i class="icon-user"></i><span>Logout</span>
                     </button>
                   </li>
                 </ul><!-- /.navbar-actions -->
@@ -199,12 +199,7 @@
                   <li class="nav__item">
                     <a href="404.html" class="nav__item-link">404 Page</a>
                   </li><!-- /.nav-item -->
-                  <li class="nav__item">
-                    <a href="#" class="nav__item-link  open-register-popup">Register</a>
-                  </li><!-- /.nav-item -->
-                  <li class="nav__item">
-                    <a href="#" class="nav__item-link  open-login-popup">Login</a>
-                  </li><!-- /.nav-item -->
+                 
                 </ul><!-- /.dropdown-menu -->
               </li><!-- /.nav-item -->
               <li class="nav__item">
@@ -913,74 +908,6 @@
       </div><!-- /.container -->
     </footer><!-- /.Footer -->
     <button id="scrollTopBtn"><i class="fas fa-long-arrow-alt-up"></i></button>
-
-    <div class="login-popup" id="login-popup">
-      <div class="login-popup-wrapper">
-        <form class="login-popup__form">
-          <h3 class="login-popup__title">Login!</h3>
-          <p class="login-popup__desc">Connect, organize and get things done to keep your IT business safe.</p>
-          <div class="form-group mb-20">
-            <i class="icon-mail input-icon"></i>
-            <input type="text" class="form-control" placeholder="Email">
-          </div>
-          <div class="form-group mb-20">
-            <i class="icon-lock input-icon"></i>
-            <input type="password" class="form-control" placeholder="********">
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-20">
-            <div class="custom-control custom-checkbox d-flex align-items-center">
-              <input type="checkbox" class="custom-control-input" id="customCheck1">
-              <label class="custom-control-label" for="customCheck1">Remember Me!</label>
-            </div>
-            <a href="#" class="fz-14 font-weight-bold color-secondary">Forget Password?</a>
-          </div>
-          <button type="submit" class="btn btn__primary btn__block btn__xl">
-            <span>Login</span>
-            <i class="icon-arrow-right"></i>
-          </button>
-        </form>
-        <div class="d-flex justify-content-center align-items-center mt-20">
-          <span class="color-white fz-14 font-weight-bold">Don’t Have An Account?</span>
-          <button id="go-register" class="go-register fz-14 font-weight-bold">
-            <span>Register Here</span><i class="icon-arrow-right"></i>
-          </button>
-        </div>
-      </div>
-    </div><!-- /.login-popup -->
-
-    <div class="login-popup" id="register-popup">
-      <div class="login-popup-wrapper">
-        <form class="login-popup__form">
-          <h3 class="login-popup__title">Register!</h3>
-          <p class="login-popup__desc">Connect, organize and get things done to keep your IT business safe.</p>
-          <div class="form-group mb-20">
-            <i class="icon-mail input-icon"></i>
-            <input type="text" class="form-control" placeholder="Email">
-          </div>
-          <div class="form-group mb-20">
-            <i class="icon-lock input-icon"></i>
-            <input type="password" class="form-control" placeholder="********">
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-20">
-            <div class="custom-control custom-checkbox d-flex align-items-center">
-              <input type="checkbox" class="custom-control-input" id="customCheck2">
-              <label class="custom-control-label" for="customCheck2">I read & agree to <a href="#">Terms &
-                  Conditions</a></label>
-            </div>
-          </div>
-          <button type="submit" class="btn btn__primary btn__block btn__xl">
-            <span>Register</span>
-            <i class="icon-arrow-right"></i>
-          </button>
-        </form>
-        <div class="d-flex justify-content-center align-items-center mt-20">
-          <span class="color-white fz-14 font-weight-bold">Have An Account?</span>
-          <button id="go-login" class="go-login fz-14 font-weight-bold">
-            <span>Login Here</span><i class="icon-arrow-right"></i>
-          </button>
-        </div>
-      </div>
-    </div><!-- /.login-popup -->
 
     <div class="search-popup">
       <button type="button" class="search-popup__close"><i class="fas fa-times"></i></button>

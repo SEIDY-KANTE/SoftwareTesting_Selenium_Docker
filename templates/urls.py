@@ -3,7 +3,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", views.login, name="login"),
+    path("login.html", views.login, name="login"),
+    path("login/", views.login, name="login"),
+    path("register.html", views.register, name="register"),
     path("index.html", views.index, name="index"),
     path("blog.html", views.blog, name="blog"),
     path("blog-single-post.html", views.blog_single_post, name="blog single post"),
@@ -37,7 +40,7 @@ urlpatterns = [
         views.industries_single_industry,
         name="industries-single-industry",
     ),
-    path("industries", views.industries, name="industries"),
+    path("industries.html", views.industries, name="industries"),
     path(
         "it-solutions-single.html",
         views.it_solutions_single,
@@ -49,4 +52,5 @@ urlpatterns = [
     path("request-quote.html", views.request_quote, name="request-quote"),
     path("search.html", views.search, name="search"),
     path("why-us.html", views.why_choose_us, name=""),
+    path("add-blog.html", views.add_blog, name="add-blog"),
 ]

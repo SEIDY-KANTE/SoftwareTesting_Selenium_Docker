@@ -88,9 +88,10 @@
                       >
                         <li>
                           <button
+                            onclick="window.location.href='login.html'"
                             class="action__btn action__btn-login open-login-popup"
                           >
-                            <i class="icon-user"></i><span>Login</span>
+                            <i class="icon-user"></i><span>Logout</span>
                           </button>
                         </li>
                       </ul>
@@ -412,19 +413,6 @@
                     <li class="nav__item">
                       <a href="404.html" class="nav__item-link">404 Page</a>
                     </li>
-                    <!-- /.nav-item -->
-                    <li class="nav__item">
-                      <a href="#" class="nav__item-link open-register-popup"
-                        >Register</a
-                      >
-                    </li>
-                    <!-- /.nav-item -->
-                    <li class="nav__item">
-                      <a href="#" class="nav__item-link open-login-popup"
-                        >Login</a
-                      >
-                    </li>
-                    <!-- /.nav-item -->
                   </ul>
                   <!-- /.dropdown-menu -->
                 </li>
@@ -791,7 +779,10 @@
                   class="stats-banner contact-panel__info d-flex flex-column justify-content-between"
                 >
                   <div class="bg-img">
-                    <img src="{% static 'images/backgrounds/1.jpg'%}" alt="banner" />
+                    <img
+                      src="{% static 'images/backgrounds/1.jpg'%}"
+                      alt="banner"
+                    />
                   </div>
                   <div
                     class="slick-carousel carousel-dots-light counters-light mb-40"
@@ -1277,38 +1268,80 @@
                   data-slick='{"slidesToShow": 5, "arrows": false, "dots": false, "autoplay": true,"autoplaySpeed": 2000, "infinite": true, "responsive": [ {"breakpoint": 992, "settings": {"slidesToShow": 4}}, {"breakpoint": 767, "settings": {"slidesToShow": 3}}, {"breakpoint": 480, "settings": {"slidesToShow": 2}}]}'
                 >
                   <div class="client">
-                    <img src="{% static 'images/clients/1.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/1.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/1.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/1.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/2.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/2.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/2.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/2.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/3.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/3.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/3.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/3.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/4.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/4.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/4.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/4.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/5.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/5.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/5.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/5.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/6.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/6.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/6.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/6.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/7.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/7.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/7.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/7.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                 </div>
@@ -1345,7 +1378,10 @@
               <div class="post-item">
                 <div class="post__img">
                   <a href="blog-single-post.html">
-                    <img src="{% static 'images/blog/grid/1.jpg'%}" alt="blog image" />
+                    <img
+                      src="{% static 'images/blog/grid/1.jpg'%}"
+                      alt="blog image"
+                    />
                   </a>
                 </div>
                 <!-- /.blog-img -->
@@ -1387,7 +1423,10 @@
               <div class="post-item">
                 <div class="post__img">
                   <a href="blog-single-post.html">
-                    <img src="{% static 'images/blog/grid/2.jpg'%}" alt="blog image" />
+                    <img
+                      src="{% static 'images/blog/grid/2.jpg'%}"
+                      alt="blog image"
+                    />
                   </a>
                 </div>
                 <!-- /.blog-img -->
@@ -1429,7 +1468,10 @@
               <div class="post-item">
                 <div class="post__img">
                   <a href="blog-single-post.html">
-                    <img src="{% static 'images/blog/grid/3.jpg'%}" alt="blog image" />
+                    <img
+                      src="{% static 'images/blog/grid/3.jpg'%}"
+                      alt="blog image"
+                    />
                   </a>
                 </div>
                 <!-- /.blog-img -->
@@ -1654,115 +1696,6 @@
       <button id="scrollTopBtn">
         <i class="fas fa-long-arrow-alt-up"></i>
       </button>
-
-      <div class="login-popup" id="login-popup">
-        <div class="login-popup-wrapper">
-          <form class="login-popup__form">
-            <h3 class="login-popup__title">Login!</h3>
-            <p class="login-popup__desc">
-              Connect, organize and get things done to keep your IT business
-              safe.
-            </p>
-            <div class="form-group mb-20">
-              <i class="icon-mail input-icon"></i>
-              <input type="text" class="form-control" placeholder="Email" />
-            </div>
-            <div class="form-group mb-20">
-              <i class="icon-lock input-icon"></i>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="********"
-              />
-            </div>
-            <div
-              class="d-flex align-items-center justify-content-between mb-20"
-            >
-              <div
-                class="custom-control custom-checkbox d-flex align-items-center"
-              >
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="customCheck1"
-                />
-                <label class="custom-control-label" for="customCheck1"
-                  >Remember Me!</label
-                >
-              </div>
-              <a href="#" class="fz-14 font-weight-bold color-secondary"
-                >Forget Password?</a
-              >
-            </div>
-            <button type="submit" class="btn btn__primary btn__block btn__xl">
-              <span>Login</span>
-              <i class="icon-arrow-right"></i>
-            </button>
-          </form>
-          <div class="d-flex justify-content-center align-items-center mt-20">
-            <span class="color-white fz-14 font-weight-bold"
-              >Don’t Have An Account?</span
-            >
-            <button id="go-register" class="go-register fz-14 font-weight-bold">
-              <span>Register Here</span><i class="icon-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- /.login-popup -->
-
-      <div class="login-popup" id="register-popup">
-        <div class="login-popup-wrapper">
-          <form class="login-popup__form">
-            <h3 class="login-popup__title">Register!</h3>
-            <p class="login-popup__desc">
-              Connect, organize and get things done to keep your IT business
-              safe.
-            </p>
-            <div class="form-group mb-20">
-              <i class="icon-mail input-icon"></i>
-              <input type="text" class="form-control" placeholder="Email" />
-            </div>
-            <div class="form-group mb-20">
-              <i class="icon-lock input-icon"></i>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="********"
-              />
-            </div>
-            <div
-              class="d-flex align-items-center justify-content-between mb-20"
-            >
-              <div
-                class="custom-control custom-checkbox d-flex align-items-center"
-              >
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="customCheck2"
-                />
-                <label class="custom-control-label" for="customCheck2"
-                  >I read & agree to <a href="#">Terms & Conditions</a></label
-                >
-              </div>
-            </div>
-            <button type="submit" class="btn btn__primary btn__block btn__xl">
-              <span>Register</span>
-              <i class="icon-arrow-right"></i>
-            </button>
-          </form>
-          <div class="d-flex justify-content-center align-items-center mt-20">
-            <span class="color-white fz-14 font-weight-bold"
-              >Have An Account?</span
-            >
-            <button id="go-login" class="go-login fz-14 font-weight-bold">
-              <span>Login Here</span><i class="icon-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- /.login-popup -->
 
       <div class="search-popup">
         <button type="button" class="search-popup__close">
