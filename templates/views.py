@@ -141,14 +141,31 @@ def add_industry(request):
 
 def blog(request):
     if request.user.is_authenticated:
-        return render(request, "blog.html")
+        blogs = BlogModel.objects.all()
+        return render(request, "blog.html", {"blogs": blogs})
     else:
         return redirect("/login.html")
 
 
 def blog_single_post(request):
     if request.user.is_authenticated:
-        return render(request, "blog-single-post.html")
+        post_id = request.GET["post_id"]
+        post = BlogModel.objects.get(pk=post_id)
+        return render(request, "blog-single-post.html", {"post": post})
+    else:
+        return redirect("/login.html")
+
+
+def industries(request):
+    if request.user.is_authenticated:
+        return render(request, "industries.html")
+    else:
+        return redirect("/login.html")
+
+
+def industries_single_industry(request):
+    if request.user.is_authenticated:
+        return render(request, "industries-single-industry.html")
     else:
         return redirect("/login.html")
 
@@ -240,20 +257,6 @@ def contact(request):
 def faqs(request):
     if request.user.is_authenticated:
         return render(request, "faqs.html")
-    else:
-        return redirect("/login.html")
-
-
-def industries_single_industry(request):
-    if request.user.is_authenticated:
-        return render(request, "industries-single-industry.html")
-    else:
-        return redirect("/login.html")
-
-
-def industries(request):
-    if request.user.is_authenticated:
-        return render(request, "industries.html")
     else:
         return redirect("/login.html")
 

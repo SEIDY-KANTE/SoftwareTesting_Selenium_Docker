@@ -1,0 +1,38 @@
+[
+  {
+    "model": "SoftwareTesting_Selenium_Docker.blogmodel",
+    "fields": {
+      "Id": 1,
+      "Image": "images/blog/grid/1.jpg",
+      "Title": "Five Ways to Develop a World Class Sales Operations Function",
+      "Category": "Consulting, Sales",
+      "Author": "Seidy",
+      "Content": "Vast numbers of employees now work remotely, and it’s too late to develop a set of remote-work policies if you didn’t already have one. But there are ways to make the remote-work experience productive and engaging — for employees and the organization.At most organizations, scenario planning focuses on the necessary operational responses to ensure business continuity. Few of these plans address the ability or bandwidth of employees to focus on their work,” says Brian Kropp, Distinguished Vice President, Research, Gartner. Use both direct conversations and indirect observations to get visibility into employees’ challenges and concerns. Use every opportunity to make clear to employees that you support and care for them. To facilitate regular conversations between managers and employees, provide managers with guidance on how best to broach sensitive subjects arising from the COVID-19 pandemic, including alternative work models, job security and prospects, impact on staffing and tension in the workplace. Make sure employees have the technology they need to be successful, which may be more than just a mobile phone and laptop. For example, if you expect employees to attend virtual meetings, do they have adequate cameras?  Even if you don’t have an extensive set of technology and collaborative tools available, you can equip employees to function effectively when remote. But don’t just assume that people know how to operate with virtual communications — or are comfortable in that environment.",
+      "CreateAt": "2020-01-30"
+    }
+  },
+  {
+    "model": "SoftwareTesting_Selenium_Docker.blogmodel",
+    "fields": {
+      "Id": 2,
+      "Image": "images/blog/grid/2.jpg",
+      "Title": "The Best Marketing Strategies",
+      "Category": "Consulting, Marketing",
+      "Author": "Seidy",
+      "Content": "<p>Vast numbers of employees now work remotely, and it’s toolate to develop a set of remote-work policies if you didn’talready have one. But there are ways to make the remote-workexperience productive and engaging — for employees and theorganization</p<p>“At most organizations, scenario planning focuses on the necessary operational responses to ensure business continuity.Few of these plans address the ability or bandwidth of employees to focus on their work,” says Brian Kropp, Distinguished Vice President, Research, Gartner. </p> <p>Use both direct conversations and indirect observations toget visibility into employees’ challenges and concerns. Useevery opportunity to make clear to employees that yousupport and care for them. To facilitate regularconversations between managers and employees, providemanagers with guidance on how best to broach sensitivesubjects arising from the COVID-19 pandemic, includingalternative work models, job security and prospects, impacton staffing and tension in the workplace</p><p>Make sure employees have the technology they need to besuccessful, which may be more than just a mobile phone andlaptop. For example, if you expect employees to attendvirtual meetings, do they have adequate cameras</p<p>Even if you don’t have an extensive set of technology andcollaborative tools available, you can equip employees tofunction effectively when remote. But don’t just assume thatpeople know how to operate with virtual communications — orare comfortable in that environment</p>",
+      "CreateAt": "2020-01-30"
+    }
+  },
+  {
+    "model": "SoftwareTesting_Selenium_Docker.blogmodel",
+    "fields": {
+      "Id": 3,
+      "Image": "images/blog/grid/3.jpg",
+      "Title": "The Best Marketing Strategies",
+      "Category": "Consulting, Marketing",
+      "Author": "KANTE",
+      "Content": "<h4>Another one</h4><p>Vast numbers of employees now work remotely, and it’s toolate to develop a set of remote-work policies if you didn’talready have one. But there are ways to make the remote-workexperience productive and engaging — for employees and theorganization</p<p>“At most organizations, scenario planning focuses on the necessary operational responses to ensure business continuity.Few of these plans address the ability or bandwidth of employees to focus on their work,” says Brian Kropp, Distinguished Vice President, Research, Gartner. </p> <p>Use both direct conversations and indirect observations toget visibility into employees’ challenges and concerns. Useevery opportunity to make clear to employees that yousupport and care for them. To facilitate regularconversations between managers and employees, providemanagers with guidance on how best to broach sensitivesubjects arising from the COVID-19 pandemic, includingalternative work models, job security and prospects, impacton staffing and tension in the workplace</p<p>Make sure employees have the technology they need to besuccessful, which may be more than just a mobile phone andlaptop. For example, if you expect employees to attendvirtual meetings, do they have adequate cameras</p<p>Even if you don’t have an extensive set of technology andcollaborative tools available, you can equip employees tofunction effectively when remote. But don’t just assume thatpeople know how to operate with virtual communications — orare comfortable in that environment</p>",
+      "CreateAt": "2020-01-30"
+    }
+  }
+]
