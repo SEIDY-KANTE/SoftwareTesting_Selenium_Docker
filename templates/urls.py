@@ -55,4 +55,5 @@ urlpatterns = [
     path("add-blog.html", views.add_blog, name="add-blog"),
     path("add-industry.html", views.add_industry, name="add-industry"),
     path("success.html", views.success, name="success"),
+    path("logout", views.logout, name="logout")
 ]
