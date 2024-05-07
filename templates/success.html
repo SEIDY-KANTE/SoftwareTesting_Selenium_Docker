@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="DataSoft  IT Solutions &  Services Template"
+    />
+    <link href="{% static 'images/favicon/favicon.png'%}" rel="icon" />
+    <title>DataSoft IT Solutions & Services Template</title>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Roboto:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/libraries.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="preloader">
+        <div class="loading">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <!-- /.preloader -->
+
+      <!-- =========================
+        Header
+    =========================== -->
+      <header class="header header-transparent">
+        <nav class="navbar navbar-expand-lg sticky-navbar">
+          <div class="container">
+            <a class="navbar-brand" href="index.html">
+              <img
+                src="{% static 'images/logo/logo-light.png'%}"
+                class="logo-light"
+                alt="logo"
+              />
+              <img
+                src="{% static 'images/logo/logo-dark.png'%}"
+                class="logo-dark"
+                alt="logo"
+              />
+            </a>
+          </div>
+          <!-- /.container -->
+        </nav>
+        <!-- /.navabr -->
+      </header>
+      <!-- /.Header -->
+
+      <section class="page-404 bg-overlay bg-overlay-gradient mt--100 py-0">
+        <div class="bg-img">
+          <img src="{% static 'images/banners/1.jpg'%}" alt="background" />
+        </div>
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-sm-12 col-md-12 col-lg-12 d-flex align-items-center justify-content-center vh-100"
+            >
+              <div class="text-center">
+                <h1 class="error-code">✅</h1>
+                <h2 class="error-title">{{message}}</h2>
+                <p class="error-desc">Thank you for your submission.</p>
+
+                <!-- Here show the dicreaser timer (from 2 to 0 seconde) using javascript -->
+
+                <p class="error-desc">
+                  You will be redirected to the home page in
+                  <span id="countdown">3</span> seconds.
+                </p>
+              </div>
+            </div>
+            <!-- /.col-lg-12 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- /.page-404 -->
+    </div>
+    <!-- /.wrapper -->
+
+    <script src="{% static 'js/jquery-3.5.1.min.js'%}"></script>
+    <script src="{% static 'js/plugins.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+
+    <script>
+      var timeleft = 3;
+
+      var downloadTimer = setInterval(function () {
+        timeleft--;
+        document.getElementById("countdown").textContent = timeleft;
+        if (timeleft <= 0) window.location.href = "{{redirect_url}}";
+      }, 1000);
+    </script>
+  </body>
+</html>

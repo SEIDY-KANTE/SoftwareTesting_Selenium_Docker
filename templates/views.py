@@ -38,6 +38,80 @@ def index(request):
     return render(request, "index.html")
 
 
+def add_blog(request):
+
+    if request.method == "POST":
+
+        imageURL = request.POST["image"]
+        title = request.POST["title"]
+        category = request.POST["category"]
+        author = request.POST["author"]
+        content = request.POST["content"]
+
+        blog = {
+            "image": imageURL,
+            "title": title,
+            "category": category,
+            "author": author,
+            "content": content,
+        }
+
+
+        print(blog)
+
+        return render(
+            request,
+            "success.html",
+            {
+                "message": "Blog Post is saved successfully",
+                "redirect_url": "/blog.html",
+            },
+        )
+
+    else:
+        return render(request, "add-blog.html")
+
+
+def add_industry(request):
+
+    if request.method == "POST":
+
+        title = request.POST["title"]
+        description = request.POST["description-content"]
+        list_items = request.POST["list-items"]
+        imageUrl = request.POST["image"]
+        history_sub_title = request.POST["history-timeline-subtitle"]
+        history_title = request.POST["history-timeline-title"]
+        history_time_line_year = request.POST["history-timeline-year"]
+        history_time_line_description = request.POST["history-timeline-description"]
+
+        industry = {
+            "title": title,
+            "description": description,
+            "list_items": list_items,
+            "imageUrl": imageUrl,
+            "history_sub_title": history_sub_title,
+            "history_title": history_title,
+            "history_time_line_year": history_time_line_year,
+            "history_time_line_description": history_time_line_description,
+        }
+
+
+        print(industry)
+
+        return render(
+            request,
+            "success.html",
+            {
+                "message": "Inudstry is saved successfully",
+                "redirect_url": "/industries.html",
+            },
+        )
+
+    else:
+        return render(request, "add-industry.html")
+
+
 def blog(request):
     return render(request, "blog.html")
 
@@ -134,5 +208,5 @@ def why_choose_us(request):
     return render(request, "why-us.html")
 
 
-def add_blog(request):
-    return render(request, "add-blog.html")
+def success(request):
+    return render(request, "success.html")

@@ -53,4 +53,6 @@ urlpatterns = [
     path("search.html", views.search, name="search"),
     path("why-us.html", views.why_choose_us, name=""),
     path("add-blog.html", views.add_blog, name="add-blog"),
+    path("add-industry.html", views.add_industry, name="add-industry"),
+    path("success.html", views.success, name="success"),
 ]

@@ -182,7 +182,7 @@
                   <a
                     href="#"
                     data-toggle="dropdown"
-                    class="dropdown-toggle nav__item-link"
+                    class="dropdown-toggle nav__item-link active"
                     >IT Solutions</a
                   >
                   <ul class="dropdown-menu wide-dropdown-menu">
@@ -352,7 +352,7 @@
                   <a
                     href="#"
                     data-toggle="dropdown"
-                    class="dropdown-toggle nav__item-link active"
+                    class="dropdown-toggle nav__item-link"
                     >Blog</a
                   >
                   <ul class="dropdown-menu">
@@ -427,7 +427,7 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <h1 class="pagetitle__heading">Add Blog</h1>
+              <h1 class="pagetitle__heading">Add Industry</h1>
             </div>
             <!-- /.col-lg-12 -->
           </div>
@@ -459,11 +459,11 @@
                             <div class="row">
                               <div class="col-sm-12">
                                 <h4 class="contact-panel__title">
-                                  Add New Blog Post
+                                  Add New Industry
                                 </h4>
                                 <p class="contact-panel__desc mb-20">
-                                  Please fill the form below to add a new blog
-                                  post.
+                                  Please fill the form below to add a new
+                                  industry
                                 </p>
                               </div>
                               <div class="col-sm-6 col-md-6 col-lg-6">
@@ -491,51 +491,90 @@
                                 </div>
                               </div>
                               <!-- /.col-lg-6 -->
-                              <div class="col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                  <label for="category">Category:</label>
-                                  <select
-                                    class="form-control"
-                                    name="category"
-                                    id="category"
-                                  >
-                                    <option value="Technology">
-                                      Technology
-                                    </option>
-                                    <option value="Business">Business</option>
-                                    <option value="Health">Health</option>
-                                    <option value="Entertainment">
-                                      Entertainment
-                                    </option>
-                                    <option value="Sports">Sports</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <!-- /.col-lg-6 -->
-                              <div class="col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                  <label for="author">Author:</label>
-                                  <input
-                                    type="text"
-                                    name="author"
-                                    id="author"
-                                    class="form-control"
-                                    required
-                                  />
-                                </div>
-                              </div>
-                              <!-- /.col-lg-6 -->
                               <div class="col-12">
                                 <div class="form-group">
-                                  <label for="content">Content:</label>
+                                  <label for="list-items">List items:</label>
                                   <textarea
-                                    name="content"
-                                    id="content"
+                                    name="list-items"
+                                    id="list-items"
                                     class="form-control"
                                     rows="5"
                                     required
                                   ></textarea>
                                 </div>
+                              </div>
+
+                              <div class="col-12">
+                                <div class="form-group">
+                                  <label for="description-content"
+                                    >Description Content:</label
+                                  >
+                                  <textarea
+                                    name="description-content"
+                                    id="description-content"
+                                    class="form-control"
+                                    rows="5"
+                                    required
+                                  ></textarea>
+                                </div>
+                              </div>
+                              <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                  <label for="history-timeline-subtitle"
+                                    >History Timeline Subtitle</label
+                                  >
+                                  <input
+                                    type="text"
+                                    name="history-timeline-subtitle"
+                                    id="history-timeline-subtitle"
+                                    class="form-control"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                  <label for="history-timeline-title"
+                                    >History Title</label
+                                  >
+                                  <input
+                                    type="text"
+                                    name="history-timeline-title"
+                                    id="history-timeline-title"
+                                    class="form-control"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                  <label for="history-timeline-year"
+                                    >History Timeline Year</label
+                                  >
+                                  <input
+                                    type="text"
+                                    name="history-timeline-year"
+                                    id="history-timeline-year"
+                                    class="form-control"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                  <label for="history-timeline-description"
+                                    >History Timeline Description</label
+                                  >
+                                  <textarea
+                                    name="history-timeline-description"
+                                    id="history-timeline-description"
+                                    class="form-control"
+                                    rows="5"
+                                    required
+                                  ></textarea>
+                                </div>
+                              </div>
+                              <div class="col-12">
                                 <button
                                   type="submit"
                                   class="btn btn__secondary btn__icon btn__xhight mt-10"
@@ -566,8 +605,6 @@
         </div>
         <!-- /.container -->
       </section>
-
-      <!-- /.blog Grid -->
 
       <!-- ========================
         Footer
