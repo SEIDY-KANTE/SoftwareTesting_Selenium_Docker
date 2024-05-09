@@ -254,7 +254,6 @@
                 name="username"
                 class="form-control"
                 placeholder="Username"
-                required
               />
             </div>
             <div class="form-group mb-20">
@@ -273,8 +272,12 @@
                 name="password"
                 class="form-control"
                 placeholder="********"
-                required
               />
+            </div>
+            <div class="error-message">
+              {%if Error is not None %}
+              <label style="color: red">{{Message}}</label>
+              {% endif %}
             </div>
             <div
               class="d-flex align-items-center justify-content-between mb-20"
@@ -302,8 +305,10 @@
               >Have An Account?</span
             >
             <button id="go-login" class="go-login fz-14 font-weight-bold">
-              <span><a href="login.html">Login Here</a></span
-              ><i class="icon-arrow-right"></i>
+              <span
+                ><a href="login.html"
+                  >Login Here <i class="icon-arrow-right"></i></a
+              ></span>
             </button>
           </div>
         </div>

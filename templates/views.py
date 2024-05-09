@@ -13,14 +13,27 @@ def login(request):
         username = request.POST["username"]
         password = request.POST["password"]
 
-        user = authenticate(request, username=username, password=password)
+        if username == "" or password == "":
+            return render(
+                request,
+                "login.html",
+                {"Error": True, "Message": "All fields are required"},
+            )
 
-        if user is not None:
-            auth.login(request, user)
-
-            return redirect("/index.html")
         else:
-            return render(request, "login.html", {"Error": True})
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                auth.login(request, user)
+
+                return redirect("/index.html")
+            else:
+                return render(
+                    request,
+                    "login.html",
+                    {"Error": True, "Message": "Invalid username or password!"},
+                )
 
     else:
         return render(request, "login.html")
@@ -34,12 +47,42 @@ def register(request):
         email = request.POST["email"]
         password = request.POST["password"]
 
-        user = User.objects.create_user(
-            username=username, email=email, password=password
-        )
-        user.save()
+        if username == "" or email == "" or password == "":
 
-        return redirect("/login.html")
+            return render(
+                request,
+                "Register.html",
+                {"Error": True, "Message": "All fields are required"},
+            )
+
+        elif User.objects.filter(username=username).exists():
+            return render(
+                request,
+                "Register.html",
+                {"Error": True, "Message": "Username already exists"},
+            )
+
+        elif User.objects.filter(email=email).exists():
+            return render(
+                request,
+                "Register.html",
+                {"Error": True, "Message": "Email already exists"},
+            )
+
+        else:
+            user = User.objects.create_user(
+                username=username, email=email, password=password
+            )
+            user.save()
+
+            return render(
+                request,
+                "success.html",
+                {
+                    "message": "User is registered successfully",
+                    "redirect_url": "/login.html",
+                },
+            )
     else:
         return render(request, "Register.html")
 
@@ -158,14 +201,26 @@ def blog_single_post(request):
 
 def industries(request):
     if request.user.is_authenticated:
-        return render(request, "industries.html")
+        industries = IndustryModel.objects.all()
+        return render(request, "industries.html", {"industries": industries})
     else:
         return redirect("/login.html")
 
 
 def industries_single_industry(request):
     if request.user.is_authenticated:
-        return render(request, "industries-single-industry.html")
+        industry_id = request.GET["industry_id"]
+        industry = IndustryModel.objects.get(pk=industry_id)
+
+        years = industry.HistoryTimeLineYear.split("\n")
+        descriptions = industry.HistoryTimeLineDescription.split("\n")
+        timeline_data = zip(years, descriptions)
+
+        return render(
+            request,
+            "industries-single-industry.html",
+            {"industry": industry, "timeline_data": timeline_data},
+        )
     else:
         return redirect("/login.html")
 

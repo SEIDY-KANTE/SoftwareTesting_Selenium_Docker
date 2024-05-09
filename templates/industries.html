@@ -485,12 +485,13 @@
           </div>
           <!-- /.row -->
           <div class="row">
+            {% for industry in industries %}
             <!-- service item #1 -->
             <div class="col-sm-12 col-md-6 col-lg-4">
               <div class="service-item">
                 <div class="service__img">
                   <img
-                    src="{% static 'images/services/1.jpg'%}"
+                    src="{% static industry.Image %}"
                     alt="service"
                     loading="lazy"
                   />
@@ -498,15 +499,16 @@
                 <!-- /.service__img -->
                 <div class="service__content">
                   <h4 class="service__title">
-                    IT Management <br />
+                    {{industry.Title}} <br />
                     Services
                   </h4>
                   <p class="service__desc">
-                    IT management service that manages and oversees the IT of
-                    organization responsible for network and operations which
-                    includes data communication.
+                    {{industry.Description|slice:":200" | safe}}...
                   </p>
-                  <a href="it-solutions-single.html" class="btn btn__primary">
+                  <a
+                    href="industries-single-industry.html?industry_id={{ industry.Id }}"
+                    class="btn btn__primary"
+                  >
                     <span>Read More</span>
                     <i class="icon-arrow-right"></i>
                   </a>
@@ -515,183 +517,13 @@
               </div>
               <!-- /.service-item -->
             </div>
-            <!-- /.col-lg-4 -->
-            <!-- service item #2 -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="service-item">
-                <div class="service__img">
-                  <img
-                    src="{% static 'images/services/2.jpg'%}"
-                    alt="service"
-                    loading="lazy"
-                  />
-                </div>
-                <!-- /.service__img -->
-                <div class="service__content">
-                  <h4 class="service__title">
-                    Cyber Security<br />
-                    Services
-                  </h4>
-                  <p class="service__desc">
-                    Drive your business and manage risk with a global industry
-                    leader in cybersecurity, cloud, and managed security
-                    services and extend your team with leading experts.
-                  </p>
-                  <a href="it-solutions-single.html" class="btn btn__primary">
-                    <span>Read More</span>
-                    <i class="icon-arrow-right"></i>
-                  </a>
-                </div>
-                <!-- /.service-content -->
-              </div>
-              <!-- /.service-item -->
-            </div>
-            <!-- /.col-lg-4 -->
-            <!-- service item #3 -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="service-item">
-                <div class="service__img">
-                  <img
-                    src="{% static 'images/services/3.jpg'%}"
-                    alt="service"
-                    loading="lazy"
-                  />
-                </div>
-                <!-- /.service__img -->
-                <div class="service__content">
-                  <h4 class="service__title">
-                    Cloud Computing<br />
-                    Services
-                  </h4>
-                  <p class="service__desc">
-                    Cloud computing is the on-demand availability of computer
-                    system resources, especially data storage and computing
-                    power, without direct active management .
-                  </p>
-                  <a href="it-solutions-single.html" class="btn btn__primary">
-                    <span>Read More</span>
-                    <i class="icon-arrow-right"></i>
-                  </a>
-                </div>
-                <!-- /.service-content -->
-              </div>
-              <!-- /.service-item -->
-            </div>
-            <!-- /.col-lg-4 -->
-            <!-- service item #4 -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="service-item">
-                <div class="service__img">
-                  <img
-                    src="{% static 'images/services/4.jpg'%}"
-                    alt="service"
-                    loading="lazy"
-                  />
-                </div>
-                <!-- /.service__img -->
-                <div class="service__content">
-                  <h4 class="service__title">
-                    IT Consulting <br />
-                    Services
-                  </h4>
-                  <p class="service__desc">
-                    Trying to solve all your IT challenges internally can become
-                    costly and a major distraction, Leveraging knowledgeable IT
-                    consulting firms like ushelps your business.
-                  </p>
-                  <a href="it-solutions-single.html" class="btn btn__primary">
-                    <span>Read More</span>
-                    <i class="icon-arrow-right"></i>
-                  </a>
-                </div>
-                <!-- /.service-content -->
-              </div>
-              <!-- /.service-item -->
-            </div>
-            <!-- /.col-lg-4 -->
-            <!-- service item #5 -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="service-item">
-                <div class="service__img">
-                  <img
-                    src="{% static 'images/services/5.jpg'%}"
-                    alt="service"
-                    loading="lazy"
-                  />
-                </div>
-                <!-- /.service__img -->
-                <div class="service__content">
-                  <h4 class="service__title">
-                    Software Dev<br />
-                    Services
-                  </h4>
-                  <p class="service__desc">
-                    With shorter product cycles, rapid innovation, and mergers
-                    contributing to constant change, you are faced with making
-                    business decisions every day to advance your mission.
-                  </p>
-                  <a href="it-solutions-single.html" class="btn btn__primary">
-                    <span>Read More</span>
-                    <i class="icon-arrow-right"></i>
-                  </a>
-                </div>
-                <!-- /.service-content -->
-              </div>
-              <!-- /.service-item -->
-            </div>
-            <!-- /.col-lg-4 -->
-            <!-- service item #6 -->
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div
-                class="stats-banner contact-panel__info d-flex flex-column justify-content-between"
-              >
-                <div class="bg-img">
-                  <img
-                    src="{% static 'images/backgrounds/1.jpg'%}"
-                    alt="banner"
-                  />
-                </div>
-                <div
-                  class="slick-carousel carousel-dots-light counters-light mb-40"
-                  data-slick='{"slidesToShow": 1, "arrows": false, "dots": true, "speed": 700}'
-                >
-                  <div class="counter-item">
-                    <h4 class="counter color-white">6,154</h4>
-                    <p class="counter__desc">
-                      Projects And Software Developed in 2021
-                    </p>
-                  </div>
-                  <!-- /.counter-item -->
-                  <div class="counter-item">
-                    <h4 class="counter color-white">6,154</h4>
-                    <p class="counter__desc">
-                      Projects And Software Developed in 2021
-                    </p>
-                  </div>
-                  <!-- /.counter-item -->
-                </div>
-                <!-- /.slick-carousel -->
-                <div>
-                  <h4 class="stats-banner__ttile mb-20">
-                    As one of the world's largest IT Service Providers, our deep
-                    pool of certified engineers and IT staff are ready to help
-                    you to keep business safe & ensure high availability.
-                  </h4>
-                  <a href="industries.html" class="btn btn__white btn__link">
-                    <span>Customers’ Stories</span>
-                    <i class="icon-arrow-right icon-outlined"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- /.stats-banner-->
-            </div>
-            <!-- /.col-lg-4 -->
+
+            {% endfor %}
           </div>
           <!-- /.row -->
         </div>
         <!-- /.container -->
       </section>
-      <!-- /.Services Layout 2 -->
 
       <!-- ========================= 
       Testimonials layout 2

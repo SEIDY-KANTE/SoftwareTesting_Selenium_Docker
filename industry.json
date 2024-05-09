@@ -1,0 +1,32 @@
+[
+  {
+    "model": "SoftwareTesting_Selenium_Docker.industrymodel",
+    "fields": {
+      "Id": 1,
+      "Title": " Cloud Computing",
+      "Description": "Cloud computing is the on-demand availability of computer system resources, especially data storage and computing power, without direct active management by the user. The term is generally used to describe data centers available to many users over the Internet. Large clouds, predominant today, often have functions distributed over multiple locations from central servers. If the connection to the user is relatively close, it may be designated an edge server. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "ListItems": " <li> Delivered in more than 450,000 client’s interactions</li> <li>Provided by experts</li> <li>Delivered in more than 450,000 client’s interactions</li> <li>Provided by experts</li> <li>Delivered in more than 450,000 client’s interactions</li> <li>Provided by experts</li>",
+      "Image": "images/services/1.jpg",
+      "HistorySubTitle": "Explore Our Great History!!",
+      "HistoryTitle": "We Fuel The Future Of Technology And IT.",
+      "HistoryTimeLineYear": "2005",
+      "HistoryTimeLineDescription": "We partner with you to enable your technology so that you can focus on your organization’s mission leverage our talent, and creativity to help your business succeed above all your business competitors.",
+      "CreateAt": "2024-01-30"
+    }
+  },
+  {
+    "model": "SoftwareTesting_Selenium_Docker.industrymodel",
+    "fields": {
+      "Id": 2,
+      "Title": "Artificial Intelligence",
+      "Description": "<p>Artificial intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. </p> <br/> <p>lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <br/> <p>lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+      "ListItems": " <li> Delivered in more than 450,000 client’s interactions</li> <li>Provided by experts</li> <li>Delivered in more than 450,000 client’s interactions</li> <li>Provided by experts</li> <li>Delivered in more than 450,000 client’s interactions</li> <li>Provided by experts</li>",
+      "Image": "images/services/2.jpg",
+      "HistorySubTitle": "Explore Our Great History!!",
+      "HistoryTitle": "We Fuel The Future Of Technology And IT.",
+      "HistoryTimeLineYear": "2005\n2006\n2007",
+      "HistoryTimeLineDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nlorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nlorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nlorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "CreateAt": "2024-01-30"
+    }
+  }
+]
