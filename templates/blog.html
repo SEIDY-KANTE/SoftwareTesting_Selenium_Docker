@@ -27,11 +27,6 @@
 
   <body>
     <div class="wrapper">
-      <div class="preloader">
-        <div class="loading">
-          <span></span><span></span><span></span><span></span>
-        </div>
-      </div>
       <!-- /.preloader -->
 
       <!-- =========================
@@ -90,7 +85,8 @@
                         onclick="window.location.href='/logout'"
                         class="action__btn action__btn-login open-login-popup"
                       >
-                        <i class="icon-user"></i><span>Logout</span>
+                        <i class="icon-user"></i
+                        ><span>{{username}} | Logout</span>
                       </button>
                     </li>
                   </ul>
@@ -467,7 +463,7 @@
             <div class="col-sm-12 col-md-6 col-lg-4">
               <div class="post-item">
                 <div class="post__img">
-                  <a href="blog-single-post.html">
+                  <a href="blog-single-post.html?post_id={{ blog.Id }}">
                     <img src="{% static blog.Image %}" alt="blog image" />
                   </a>
                 </div>
@@ -485,7 +481,7 @@
                   </div>
                   <p class="post__desc">
                     {{ blog.Content|slice:":200" | safe}}...
-                  </p>                 
+                  </p>
                   <a
                     href="blog-single-post.html?post_id={{ blog.Id }}"
                     class="btn btn__secondary btn__link"

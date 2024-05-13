@@ -28,11 +28,7 @@
 
   <body>
     <div class="wrapper">
-      <div class="preloader">
-        <div class="loading">
-          <span></span><span></span><span></span><span></span>
-        </div>
-      </div>
+      <!--  -->
       <!-- =========================
         Header
     =========================== -->
@@ -89,7 +85,8 @@
                         onclick="window.location.href='/logout'"
                         class="action__btn action__btn-login open-login-popup"
                       >
-                        <i class="icon-user"></i><span>Logout</span>
+                        <i class="icon-user"></i
+                        ><span>{{username}} | Logout</span>
                       </button>
                     </li>
                   </ul>
@@ -486,7 +483,7 @@
                                     name="title"
                                     id="title"
                                     class="form-control"
-                                    required
+                                    
                                   />
                                 </div>
                               </div>
@@ -501,7 +498,7 @@
                                     id="description-content"
                                     class="form-control"
                                     rows="5"
-                                    required
+                                    
                                   ></textarea>
                                 </div>
                               </div>
@@ -514,7 +511,7 @@
                                     id="list-items"
                                     class="form-control"
                                     rows="5"
-                                    required
+                                    
                                   ></textarea>
                                 </div>
                               </div>
@@ -529,7 +526,7 @@
                                     name="history-timeline-subtitle"
                                     id="history-timeline-subtitle"
                                     class="form-control"
-                                    required
+                                    
                                   />
                                 </div>
                               </div>
@@ -543,7 +540,7 @@
                                     name="history-timeline-title"
                                     id="history-timeline-title"
                                     class="form-control"
-                                    required
+                                    
                                   />
                                 </div>
                               </div>
@@ -557,7 +554,7 @@
                                     name="history-timeline-year"
                                     id="history-timeline-year"
                                     class="form-control"
-                                    required
+                                    
                                   ></textarea>
                                 </div>
                               </div>
@@ -571,7 +568,7 @@
                                     id="history-timeline-description"
                                     class="form-control"
                                     rows="5"
-                                    required
+                                    
                                   ></textarea>
                                 </div>
                               </div>

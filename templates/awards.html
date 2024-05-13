@@ -27,11 +27,6 @@
 
   <body>
     <div class="wrapper">
-      <div class="preloader">
-        <div class="loading">
-          <span></span><span></span><span></span><span></span>
-        </div>
-      </div>
       <!-- /.preloader -->
 
       <!-- =========================
@@ -90,7 +85,8 @@
                         onclick="window.location.href='/logout'"
                         class="action__btn action__btn-login open-login-popup"
                       >
-                        <i class="icon-user"></i><span>Logout</span>
+                        <i class="icon-user"></i
+                        ><span>{{username}} | Logout</span>
                       </button>
                     </li>
                   </ul>
@@ -388,7 +384,7 @@
                     <li class="nav__item">
                       <a href="404.html" class="nav__item-link">404 Page</a>
                     </li>
-                   
+
                     <!-- /.nav-item -->
                   </ul>
                   <!-- /.dropdown-menu -->
@@ -1036,7 +1032,6 @@
       <button id="scrollTopBtn">
         <i class="fas fa-long-arrow-alt-up"></i>
       </button>
-
 
       <div class="search-popup">
         <button type="button" class="search-popup__close">

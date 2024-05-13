@@ -28,11 +28,6 @@
 
   <body>
     <div class="wrapper">
-      <div class="preloader">
-        <div class="loading">
-          <span></span><span></span><span></span><span></span>
-        </div>
-      </div>
       <!-- /.preloader -->
 
       <!-- =========================
@@ -87,8 +82,12 @@
                       >
                     </li>
                     <li>
-                      <button   onclick="window.location.href='/logout'" class="action__btn action__btn-login open-login-popup">
-                        <i class="icon-user"></i><span>Logout</span>
+                      <button
+                        onclick="window.location.href='/logout'"
+                        class="action__btn action__btn-login open-login-popup"
+                      >
+                        <i class="icon-user"></i
+                        ><span>{{username}} | Logout</span>
                       </button>
                     </li>
                   </ul>
@@ -386,7 +385,6 @@
                     <li class="nav__item">
                       <a href="404.html" class="nav__item-link">404 Page</a>
                     </li>
-                   
                   </ul>
                   <!-- /.dropdown-menu -->
                 </li>
@@ -424,10 +422,7 @@
         >
           <div class="slide-item align-v-h bg-overlay bg-overlay-gradient">
             <div class="bg-img">
-              <img
-                src="{% static 'images/sliders/1.jpg'%}"
-                alt="slide img"
-              />
+              <img src="{% static 'images/sliders/1.jpg'%}" alt="slide img" />
             </div>
             <div class="container">
               <div class="row align-items-center">
@@ -498,10 +493,7 @@
           <!-- /.slide-item -->
           <div class="slide-item align-v-h bg-overlay">
             <div class="bg-img">
-              <img
-                src="{% static 'images/sliders/2.jpg'%}"
-                alt="slide img"
-              />
+              <img src="{% static 'images/sliders/2.jpg'%}" alt="slide img" />
             </div>
             <div class="container">
               <div class="row align-items-center">
@@ -851,10 +843,7 @@
         class="features-layout2 bg-overlay bg-overlay-secondary-gradient pt-130"
       >
         <div class="bg-img">
-          <img
-            src="{% static 'images/banners/4.jpg'%}"
-            alt="background'%}"
-          />
+          <img src="{% static 'images/banners/4.jpg'%}" alt="background'%}" />
         </div>
         <div class="container">
           <div class="row mb-40">
@@ -994,7 +983,10 @@
                   class="stats-banner contact-panel__info d-flex flex-column justify-content-between"
                 >
                   <div class="bg-img">
-                    <img src="{% static 'images/backgrounds/1.jpg'%}" alt="banner" />
+                    <img
+                      src="{% static 'images/backgrounds/1.jpg'%}"
+                      alt="banner"
+                    />
                   </div>
                   <div
                     class="slick-carousel carousel-dots-light counters-light mb-40"
@@ -1208,38 +1200,80 @@
                   data-slick='{"slidesToShow": 5, "arrows": false, "dots": false, "autoplay": true,"autoplaySpeed": 2000, "infinite": true, "responsive": [ {"breakpoint": 992, "settings": {"slidesToShow": 4}}, {"breakpoint": 767, "settings": {"slidesToShow": 3}}, {"breakpoint": 480, "settings": {"slidesToShow": 2}}]}'
                 >
                   <div class="client">
-                    <img src="{% static 'images/clients/1.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/1.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/1.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/1.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/2.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/2.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/2.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/2.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/3.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/3.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/3.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/3.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/4.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/4.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/4.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/4.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/5.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/5.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/5.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/5.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/6.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/6.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/6.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/6.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                   <div class="client">
-                    <img src="{% static 'images/clients/7.png'%}" alt="client" />
-                    <img src="{% static 'images/clients/7.png'%}" alt="client" />
+                    <img
+                      src="{% static 'images/clients/7.png'%}"
+                      alt="client"
+                    />
+                    <img
+                      src="{% static 'images/clients/7.png'%}"
+                      alt="client"
+                    />
                   </div>
                   <!-- /.client -->
                 </div>
@@ -1698,7 +1732,10 @@
               <div class="post-item">
                 <div class="post__img">
                   <a href="blog-single-post.html">
-                    <img src="{% static 'images/blog/grid/1.jpg'%}" alt="blog image" />
+                    <img
+                      src="{% static 'images/blog/grid/1.jpg'%}"
+                      alt="blog image"
+                    />
                   </a>
                 </div>
                 <!-- /.blog-img -->
@@ -1740,7 +1777,10 @@
               <div class="post-item">
                 <div class="post__img">
                   <a href="blog-single-post.html">
-                    <img src="{% static 'images/blog/grid/2.jpg'%}" alt="blog image" />
+                    <img
+                      src="{% static 'images/blog/grid/2.jpg'%}"
+                      alt="blog image"
+                    />
                   </a>
                 </div>
                 <!-- /.blog-img -->
@@ -1782,7 +1822,10 @@
               <div class="post-item">
                 <div class="post__img">
                   <a href="blog-single-post.html">
-                    <img src="{% static 'images/blog/grid/3.jpg'%}" alt="blog image" />
+                    <img
+                      src="{% static 'images/blog/grid/3.jpg'%}"
+                      alt="blog image"
+                    />
                   </a>
                 </div>
                 <!-- /.blog-img -->

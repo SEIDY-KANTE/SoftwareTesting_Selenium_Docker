@@ -13,7 +13,7 @@ def login(request):
         username = request.POST["username"]
         password = request.POST["password"]
 
-        if username == "" or password == "":
+        if username.strip() == "" or password.strip() == "":
             return render(
                 request,
                 "login.html",
@@ -47,7 +47,7 @@ def register(request):
         email = request.POST["email"]
         password = request.POST["password"]
 
-        if username == "" or email == "" or password == "":
+        if username.strip() == "" or email.strip() == "" or password.strip() == "":
 
             return render(
                 request,
@@ -55,18 +55,14 @@ def register(request):
                 {"Error": True, "Message": "All fields are required"},
             )
 
-        elif User.objects.filter(username=username).exists():
+        elif (
+            User.objects.filter(username=username).exists()
+            or User.objects.filter(email=email).exists()
+        ):
             return render(
                 request,
                 "Register.html",
-                {"Error": True, "Message": "Username already exists"},
-            )
-
-        elif User.objects.filter(email=email).exists():
-            return render(
-                request,
-                "Register.html",
-                {"Error": True, "Message": "Email already exists"},
+                {"Error": True, "Message": "Username or Email already exists!"},
             )
 
         else:
@@ -94,13 +90,16 @@ def logout(request):
 
 def index(request):
     if request.user.is_authenticated:
-        return render(request, "index.html")
+        username = request.user.username
+        return render(request, "index.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def add_blog(request):
     if request.user.is_authenticated:
+
+        username = request.user.username
 
         if request.method == "POST":
 
@@ -118,21 +117,31 @@ def add_blog(request):
                 "Content": content,
             }
 
-            with transaction.atomic():
-                b = BlogModel(**blog)
-                b.save()
+            if (
+                not title.strip()
+                or not content.strip()
+                or not author.strip()
+                or not category.strip()
+            ):
+                return redirect("/404.html")
 
-            return render(
-                request,
-                "success.html",
-                {
-                    "message": "Blog Post is saved successfully",
-                    "redirect_url": "/blog.html",
-                },
-            )
+            else:
+                with transaction.atomic():
+                    b = BlogModel(**blog)
+                    b.save()
+
+                return render(
+                    request,
+                    "success.html",
+                    {
+                        "message": "Blog Post is saved successfully",
+                        "redirect_url": "/blog.html",
+                        "username": username,
+                    },
+                )
 
         else:
-            return render(request, "add-blog.html")
+            return render(request, "add-blog.html", {"username": username})
     else:
         return redirect("/login.html")
 
@@ -140,6 +149,8 @@ def add_blog(request):
 def add_industry(request):
 
     if request.user.is_authenticated:
+
+        username = request.user.username
 
         if request.method == "POST":
 
@@ -163,52 +174,76 @@ def add_industry(request):
                 "HistoryTimeLineDescription": history_time_line_description,
             }
 
-            with transaction.atomic():
-                i = IndustryModel(**industry)
-                i.save()
+            if (
+                not title.strip()
+                or not description.strip()
+                or not history_sub_title.strip()
+                or (
+                    history_sub_title.strip()
+                    and not history_title.strip()
+                    and not history_time_line_year.strip()
+                    and not history_time_line_description.strip()
+                )
+            ):
+                return redirect("/404.html")
 
-            return render(
-                request,
-                "success.html",
-                {
-                    "message": "Inudstry is saved successfully",
-                    "redirect_url": "/industries.html",
-                },
-            )
+            else:
+
+                with transaction.atomic():
+                    i = IndustryModel(**industry)
+                    i.save()
+
+                return render(
+                    request,
+                    "success.html",
+                    {
+                        "message": "Inudstry is saved successfully",
+                        "redirect_url": "/industries.html",
+                        "username": username,
+                    },
+                )
 
         else:
-            return render(request, "add-industry.html")
+            return render(request, "add-industry.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def blog(request):
     if request.user.is_authenticated:
+        username = request.user.username
         blogs = BlogModel.objects.all()
-        return render(request, "blog.html", {"blogs": blogs})
+        return render(request, "blog.html", {"blogs": blogs, "username": username})
     else:
         return redirect("/login.html")
 
 
 def blog_single_post(request):
     if request.user.is_authenticated:
+        username = request.user.username
         post_id = request.GET["post_id"]
         post = BlogModel.objects.get(pk=post_id)
-        return render(request, "blog-single-post.html", {"post": post})
+        return render(
+            request, "blog-single-post.html", {"post": post, "username": username}
+        )
     else:
         return redirect("/login.html")
 
 
 def industries(request):
     if request.user.is_authenticated:
+        username = request.user.username
         industries = IndustryModel.objects.all()
-        return render(request, "industries.html", {"industries": industries})
+        return render(
+            request, "industries.html", {"industries": industries, "username": username}
+        )
     else:
         return redirect("/login.html")
 
 
 def industries_single_industry(request):
     if request.user.is_authenticated:
+        username = request.user.username
         industry_id = request.GET["industry_id"]
         industry = IndustryModel.objects.get(pk=industry_id)
 
@@ -219,7 +254,11 @@ def industries_single_industry(request):
         return render(
             request,
             "industries-single-industry.html",
-            {"industry": industry, "timeline_data": timeline_data},
+            {
+                "industry": industry,
+                "timeline_data": timeline_data,
+                "username": username,
+            },
         )
     else:
         return redirect("/login.html")
@@ -234,14 +273,16 @@ def home_modern(request):
 
 def home_classic(request):
     if request.user.is_authenticated:
-        return render(request, "home-classic.html")
+        username = request.user.username
+        return render(request, "home-classic.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def about(request):
     if request.user.is_authenticated:
-        return render(request, "about-us.html")
+        username = request.user.username
+        return render(request, "about-us.html", {"username": username})
     else:
         return redirect("/login.html")
 
@@ -255,42 +296,48 @@ def error(request):
 
 def awards(request):
     if request.user.is_authenticated:
-        return render(request, "awards.html")
+        username = request.user.username
+        return render(request, "awards.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def careers(request):
     if request.user.is_authenticated:
-        return render(request, "careers.html")
+        username = request.user.username
+        return render(request, "careers.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def case_studies_classic(request):
     if request.user.is_authenticated:
-        return render(request, "case-studies-classic.html")
+        username = request.user.username
+        return render(request, "case-studies-classic.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def case_studies_grid(request):
     if request.user.is_authenticated:
-        return render(request, "case-studies-grid.html")
+        username = request.user.username
+        return render(request, "case-studies-grid.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def case_studies_modern(request):
     if request.user.is_authenticated:
-        return render(request, "case-studies-modern.html")
+        username = request.user.username
+        return render(request, "case-studies-modern.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def case_studies_single(request):
     if request.user.is_authenticated:
-        return render(request, "case-studies-single.html")
+        username = request.user.username
+        return render(request, "case-studies-single.html", {"username": username})
     else:
         return redirect("/login.html")
 
@@ -304,63 +351,72 @@ def coming_soon(request):
 
 def contact(request):
     if request.user.is_authenticated:
-        return render(request, "contact-us.html")
+        username = request.user.username
+        return render(request, "contact-us.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def faqs(request):
     if request.user.is_authenticated:
-        return render(request, "faqs.html")
+        username = request.user.username
+        return render(request, "faqs.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def it_solutions_single(request):
     if request.user.is_authenticated:
-        return render(request, "it-solutions-single.html")
+        username = request.user.username
+        return render(request, "it-solutions-single.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def it_solutions(request):
     if request.user.is_authenticated:
-        return render(request, "it-solutions.html")
+        username = request.user.username
+        return render(request, "it-solutions.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def leadership_team(request):
     if request.user.is_authenticated:
-        return render(request, "leadership-team.html")
+        username = request.user.username
+        return render(request, "leadership-team.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def pricing(request):
     if request.user.is_authenticated:
-        return render(request, "pricing.html")
+        username = request.user.username
+        return render(request, "pricing.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def request_quote(request):
     if request.user.is_authenticated:
-        return render(request, "request-quote.html")
+        username = request.user.username
+        return render(request, "request-quote.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def search(request):
     if request.user.is_authenticated:
-        return render(request, "search.html")
+        username = request.user.username
+        return render(request, "search.html", {"username": username})
     else:
         return redirect("/login.html")
 
 
 def why_choose_us(request):
     if request.user.is_authenticated:
-        return render(request, "why-us.html")
+        username = request.user.username
+        return render(request, "why-us.html", {"username": username})
     else:
         return redirect("/login.html")
 

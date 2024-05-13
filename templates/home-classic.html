@@ -27,11 +27,6 @@
 
   <body>
     <div class="wrapper">
-      <div class="preloader">
-        <div class="loading">
-          <span></span><span></span><span></span><span></span>
-        </div>
-      </div>
       <!-- /.preloader -->
 
       <!-- =========================
@@ -91,7 +86,8 @@
                             onclick="window.location.href='/logout'"
                             class="action__btn action__btn-login open-login-popup"
                           >
-                            <i class="icon-user"></i><span>Logout</span>
+                            <i class="icon-user"></i
+                            ><span>{{username}} | Logout</span>
                           </button>
                         </li>
                       </ul>
