@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from time import sleep
 from django.contrib.auth.models import User
 from SoftwareTesting_Selenium_Docker.models.blog_model import BlogModel
+from django.core import management
 
 
 class BlogTests(unittest.TestCase):
@@ -18,6 +19,11 @@ class BlogTests(unittest.TestCase):
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
+
+    def handle_loaddata(self, **options):
+        management.call_command(
+            f"loaddata", "blogs.json", app_label="SoftwareTesting_Selenium_Docker"
+        )
 
     def test_add_blog_with_valid_credentials(self):
         driver = self.driver
@@ -206,6 +212,10 @@ class BlogTests(unittest.TestCase):
         password_field.send_keys("1234")
         submit_button.click()
 
+        sleep(2)
+
+        # self.handle_loaddata()
+
         driver.get(url + "/blog.html")
 
         sleep(3)
@@ -232,6 +242,73 @@ class BlogTests(unittest.TestCase):
             print("Open Single Blog test failed")
 
         self.assertTrue(is_sidebar_visible)
+
+    def test_list_of_blogs(self):
+        driver = self.driver
+        url = self.URL
+        driver.get(url)
+
+        username_field = driver.find_element(By.NAME, "username")
+        password_field = driver.find_element(By.NAME, "password")
+
+        submit_button = driver.find_element(
+            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
+        )
+
+        username_field.send_keys("Seidy")
+        password_field.send_keys("1234")
+        submit_button.click()
+
+        sleep(2)
+
+        self.handle_loaddata()
+
+        driver.get(url + "/blog.html")
+
+        sleep(2)
+
+        driver.execute_script("window.scrollBy(0, 100);")
+
+        blog_posts = driver.find_elements(By.CLASS_NAME, "post-item")
+
+        print("==========LIST OF BLOG POST================")
+        i = 0
+        for post in blog_posts:
+            post_image = (
+                post.find_element(By.CLASS_NAME, "post__img")
+                .find_element(By.TAG_NAME, "img")
+                .get_attribute("src")
+            )
+            post_title = (
+                post.find_element(By.CLASS_NAME, "post__title")
+                .find_element(By.TAG_NAME, "a")
+                .text.strip()
+            )
+            post_category = post.find_element(
+                By.CLASS_NAME, "post__meta-cat"
+            ).text.strip()
+            post_date = post.find_element(By.CLASS_NAME, "post__meta-date").text.strip()
+            post_description = post.find_element(
+                By.CLASS_NAME, "post__desc"
+            ).text.strip()
+
+            i += 1
+            print(f"=================Post-{i}===================")
+            print(f"Post Image: {post_image}")
+            print(f"Post Title: {post_title}")
+            print(f"Post Category: {post_category}")
+            print(f"Post Date: {post_date}")
+            print(f"Post Description: {post_description}")
+            print("============================================")
+
+        condition = len(blog_posts) > 0
+
+        if condition:
+            print("List of Blogs test successful")
+        else:
+            print("List of Blogs test failed")
+
+        self.assertTrue(condition)
 
     def test001_no_blog_post(self):
 

@@ -225,13 +225,55 @@ class LoginRegisterTests(unittest.TestCase):
 
         self.assertTrue(condition)
 
+    def test_logout(self):
+        driver = self.driver
+        url = self.URL
+        driver.get(url)
+
+        username_field = driver.find_element(By.NAME, "username")
+        password_field = driver.find_element(By.NAME, "password")
+
+        submit_button = driver.find_element(
+            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
+        )
+
+        username_field.send_keys("Seidy")
+        password_field.send_keys("1234")
+        submit_button.click()
+
+        sleep(3)
+
+        logout_button = driver.find_element(
+            By.XPATH, "/html/body/div/header/nav/div/div[1]/ul/li[2]/ul/li[2]/button"
+        )
+
+        logout_button.click()
+
+        sleep(2)
+
+        user_profile = (
+            driver.find_element(
+                By.XPATH, "/html/body/div/header/nav/div/div/ul/li/ul/li/button/span"
+            )
+            .text.strip()
+            .lower()
+        )
+
+        condition = user_profile == "login"
+
+        if condition:
+            print("Logout test successful")
+        else:
+            print("Logout test failed")
+
+        self.assertTrue(condition)
+
     def tearDown(self):
         self.driver.quit()
-        print("Tearing down the test")
-
-        if User.objects.filter(username="Seidy").exists():
-            User.objects.get(username="Seidy").delete()
-            print("Seidy user deleted")
+    
+        #if User.objects.filter(username="Seidy").exists():
+            # User.objects.get(username="Seidy").delete()
+            # print("Seidy user deleted")
 
         if User.objects.filter(username="TestUser").exists():
             User.objects.get(username="TestUser").delete()

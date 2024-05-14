@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from time import sleep
 from django.contrib.auth.models import User
 from SoftwareTesting_Selenium_Docker.models.industry_model import IndustryModel
+from django.core import management
 
 
 class TestIndustry(unittest.TestCase):
@@ -18,6 +19,11 @@ class TestIndustry(unittest.TestCase):
         self.driver.maximize_window()
 
         self.driver.implicitly_wait(10)
+
+    def handle_loaddata(self, **options):
+        management.call_command(
+            f"loaddata", "industry.json", app_label="SoftwareTesting_Selenium_Docker"
+        )
 
     def test_add_industry_with_valid_credentials(self):
         driver = self.driver
@@ -242,6 +248,67 @@ class TestIndustry(unittest.TestCase):
 
         self.assertTrue(condition)
 
+    def test_list_of_industries(self):
+
+        driver = self.driver
+        url = self.URL
+        driver.get(url)
+
+        # Valid credentials
+        username_field = driver.find_element(By.NAME, "username")
+        password_field = driver.find_element(By.NAME, "password")
+
+        submit_button = driver.find_element(
+            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
+        )
+
+        username_field.send_keys("Seidy")
+        password_field.send_keys("1234")
+        submit_button.click()
+
+        sleep(2)
+
+        self.handle_loaddata()
+
+        driver.get(url + "/industries.html")
+
+        sleep(2)
+
+        driver.execute_script("window.scrollBy(0, 100);")
+
+        industry_items = driver.find_elements(By.CLASS_NAME, "service-item")
+
+        print("============LIST OF INDUSTRIES==================")
+        i = 0
+        for industry in industry_items:
+            industry_image = (
+                industry.find_element(By.CLASS_NAME, "service__img")
+                .find_element(By.TAG_NAME, "img")
+                .get_attribute("src")
+            )
+            industry_title = industry.find_element(
+                By.CLASS_NAME, "service__title"
+            ).text.strip()
+            industry_description = industry.find_element(
+                By.CLASS_NAME, "service__desc"
+            ).text.strip()
+
+            i += 1
+            print(f"==================INDUSTRY-{i}==================")
+            print(f"Industry Image: {industry_image}")
+            print(f"Industry Title: {industry_title}")
+            print(f"Industry Description: {industry_description}")
+            print("=================================================")
+
+        condition = len(industry_items) > 0
+
+        if condition:
+            print("List of industries test successful")
+        else:
+            print("List of industries test failed")
+
+        self.assertTrue(condition)
+
     def test001_no_industry(self):
 
         driver = self.driver
@@ -262,7 +329,6 @@ class TestIndustry(unittest.TestCase):
 
         sleep(2)
 
-        
         if IndustryModel.objects.all():
             IndustryModel.objects.all().delete()
 
@@ -294,3 +360,7 @@ class TestIndustry(unittest.TestCase):
 
         # if User.objects.filter(username="Seidy").exists():
         #     User.objects.filter(username="Seidy").delete()
+
+
+if __name__ == "__main__":
+    unittest.main()
