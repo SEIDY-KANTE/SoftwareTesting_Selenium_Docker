@@ -9,6 +9,9 @@ class SliderScrollAccordionTests(unittest.TestCase):
 
     def setUp(self):
 
+        if not User.objects.filter(username="Seidy").exists():
+            User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
+
         self.URL = "http://127.0.0.1:8000"
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()

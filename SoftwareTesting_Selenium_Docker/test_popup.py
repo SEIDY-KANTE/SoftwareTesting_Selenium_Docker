@@ -1,12 +1,16 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from django.contrib.auth.models import User
 from time import sleep
 
 
 class PopupTests(unittest.TestCase):
 
     def setUp(self):
+
+        if not User.objects.filter(username="Seidy").exists():
+            User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
 
         self.URL = "http://127.0.0.1:8000/"
         self.driver = webdriver.Chrome()
@@ -119,6 +123,44 @@ class PopupTests(unittest.TestCase):
         self.assertTrue(condition)
 
 
+    def test_video_popup(self):
+        driver = self.driver
+        url = self.URL
+        driver.get(url)
+
+        sleep(2)
+
+        username_field = driver.find_element(By.NAME, "username")
+        password_field = driver.find_element(By.NAME, "password")
+
+        submit_button = driver.find_element(
+            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
+        )
+
+        username_field.send_keys("Seidy")
+        password_field.send_keys("1234")
+        submit_button.click()
+
+        sleep(2)
+
+        driver.find_element(By.XPATH, "/html/body/div/header/nav/div/div[1]/ul/li[2]/ul/li[1]/a").click()
+
+        sleep(2)
+
+        driver.find_element(By.CLASS_NAME, "popup-video").click()
+
+        sleep(2)
+
+        condition = driver.find_element(By.CLASS_NAME, "mfp-ready").is_displayed()
+
+        if condition:
+            print("Video popup test successfull")
+        else:
+            print("Video popup test successfull")
+
+        self.assertTrue(condition)
+
+    
     def tearDown(self):
         self.driver.quit()
 
