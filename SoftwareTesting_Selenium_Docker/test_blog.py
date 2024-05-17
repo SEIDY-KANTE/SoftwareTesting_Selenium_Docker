@@ -11,19 +11,14 @@ class BlogTests(unittest.TestCase):
 
     def setUp(self):
 
-        if not User.objects.filter(username="Seidy").exists():
-            User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
+        # if not User.objects.filter(username="Seidy").exists():
+        #     User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
 
         self.URL = "http://127.0.0.1:8000"
 
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
-
-    def handle_loaddata(self, **options):
-        management.call_command(
-            f"loaddata", "blogs.json", app_label="SoftwareTesting_Selenium_Docker"
-        )
 
     def test_add_blog_with_valid_credentials(self):
         driver = self.driver
@@ -98,6 +93,9 @@ class BlogTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_add_blog_with_invalid_credentials(self):
+
+        sleep(20)
+
         driver = self.driver
         url = self.URL
         driver.get(url)
@@ -132,7 +130,7 @@ class BlogTests(unittest.TestCase):
             driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
         )
 
-        print("Error message: ", error_message)
+        # print("Error message: ", error_message)
 
         condition = error_message == "oops! that page can’t be found."
 
@@ -214,14 +212,12 @@ class BlogTests(unittest.TestCase):
 
         sleep(2)
 
-        # self.handle_loaddata()
-
         driver.get(url + "/blog.html")
 
         sleep(3)
 
         blog_post = driver.find_element(
-            By.XPATH, "/html/body/div/section[2]/div/div[1]/div[1]/div/div[2]/a"
+            By.XPATH, "/html/body/div/section[2]/div/div[2]/div[1]/div/div[2]/a"
         )
 
         blog_post.click()
@@ -261,7 +257,7 @@ class BlogTests(unittest.TestCase):
 
         sleep(2)
 
-        self.handle_loaddata()
+        # self.handle_loaddata()
 
         driver.get(url + "/blog.html")
 
@@ -310,7 +306,7 @@ class BlogTests(unittest.TestCase):
 
         self.assertTrue(condition)
 
-    def test001_no_blog_post(self):
+    def test_zno_blog_post(self):
 
         driver = self.driver
         url = self.URL
@@ -330,10 +326,13 @@ class BlogTests(unittest.TestCase):
 
         sleep(2)
 
-        if BlogModel.objects.all():
-            BlogModel.objects.all().delete()
-
         driver.get(url + "/blog.html")
+
+        sleep(2)
+
+        driver.find_element(By.CLASS_NAME, "delete-blogs").find_element(
+            By.TAG_NAME, "button"
+        ).click()
 
         sleep(2)
 
@@ -356,10 +355,6 @@ class BlogTests(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-
-        # if User.objects.filter(username="Seidy").exists():
-        #     User.objects.filter(username="Seidy").delete()
-        #     print("Seidy user deleted")
 
 
 if __name__ == "__main__":

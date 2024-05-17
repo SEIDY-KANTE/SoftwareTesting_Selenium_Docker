@@ -4,13 +4,12 @@ from selenium.webdriver.common.by import By
 from time import sleep
 from django.contrib.auth.models import User
 
-
 class ValidationTests(unittest.TestCase):
 
     def setUp(self):
 
-        if not User.objects.filter(username="Seidy").exists():
-            User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
+        # if not User.objects.filter(username="Seidy").exists():
+        #     User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
 
         self.URL = "http://127.0.0.1:8000"
         self.driver = webdriver.Chrome()
@@ -68,7 +67,6 @@ class ValidationTests(unittest.TestCase):
 
         condition = success_message == "please wait..."
 
-      
         if condition:
             print("Email validation test successful")
         else:

@@ -11,8 +11,8 @@ class TestIndustry(unittest.TestCase):
 
     def setUp(self):
 
-        if not User.objects.filter(username="Seidy").exists():
-            User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
+        # if not User.objects.filter(username="Seidy").exists():
+        #     User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
 
         self.URL = "http://127.0.0.1:8000"
         self.driver = webdriver.Chrome()
@@ -20,11 +20,7 @@ class TestIndustry(unittest.TestCase):
 
         self.driver.implicitly_wait(10)
 
-    def handle_loaddata(self, **options):
-        management.call_command(
-            f"loaddata", "industry.json", app_label="SoftwareTesting_Selenium_Docker"
-        )
-
+    
     def test_add_industry_with_valid_credentials(self):
         driver = self.driver
         url = self.URL
@@ -217,7 +213,7 @@ class TestIndustry(unittest.TestCase):
         sleep(2)
 
         industry = driver.find_element(
-            By.XPATH, "/html/body/div/section[2]/div/div[2]/div/div/div[2]/a"
+            By.XPATH, "/html/body/div/section[2]/div/div[3]/div[1]/div/div[2]/a"
         )
 
         industry.click()
@@ -268,7 +264,7 @@ class TestIndustry(unittest.TestCase):
 
         sleep(2)
 
-        self.handle_loaddata()
+        # self.handle_loaddata()
 
         driver.get(url + "/industries.html")
 
@@ -309,7 +305,7 @@ class TestIndustry(unittest.TestCase):
 
         self.assertTrue(condition)
 
-    def test001_no_industry(self):
+    def test_zno_industry(self):
 
         driver = self.driver
         url = self.URL
@@ -329,10 +325,13 @@ class TestIndustry(unittest.TestCase):
 
         sleep(2)
 
-        if IndustryModel.objects.all():
-            IndustryModel.objects.all().delete()
-
         driver.get(url + "/industries.html")
+
+        sleep(2)
+
+        driver.find_element(By.CLASS_NAME, "delete-industries").find_element(
+            By.TAG_NAME, "button"
+        ).click()
 
         sleep(2)
 

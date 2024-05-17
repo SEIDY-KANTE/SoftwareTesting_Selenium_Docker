@@ -56,4 +56,6 @@ urlpatterns = [
     path("add-industry.html", views.add_industry, name="add-industry"),
     path("success.html", views.success, name="success"),
     path("logout", views.logout, name="logout"),
+    path("delete-blogs.html", views.delete_blogs, name="delete-blogs"),
+    path("delete-industries.html", views.delete_industries, name="delete-industries"),
 ]

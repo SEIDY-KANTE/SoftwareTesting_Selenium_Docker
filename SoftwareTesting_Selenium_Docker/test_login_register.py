@@ -11,8 +11,8 @@ from django.contrib.auth.models import User
 class LoginRegisterTests(unittest.TestCase):
     def setUp(self):
 
-        if not User.objects.filter(username="Seidy").exists():
-            User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
+        # if not User.objects.filter(username="Seidy").exists():
+        #     User.objects.create_superuser("Seidy", "seidy@gmail.com", "1234")
 
         self.URL = "http://127.0.0.1:8000"
 
@@ -275,9 +275,9 @@ class LoginRegisterTests(unittest.TestCase):
             # User.objects.get(username="Seidy").delete()
             # print("Seidy user deleted")
 
-        if User.objects.filter(username="TestUser").exists():
-            User.objects.get(username="TestUser").delete()
-            print("TestUser deleted")
+        # if User.objects.filter(username="TestUser").exists():
+        # User.objects.get(username="TestUser").delete()
+        # print("TestUser deleted")
 
 
 if __name__ == "__main__":

@@ -51,7 +51,7 @@ def register(request):
 
             return render(
                 request,
-                "Register.html",
+                "register.html",
                 {"Error": True, "Message": "All fields are required"},
             )
 
@@ -61,7 +61,7 @@ def register(request):
         ):
             return render(
                 request,
-                "Register.html",
+                "register.html",
                 {"Error": True, "Message": "Username or Email already exists!"},
             )
 
@@ -80,7 +80,7 @@ def register(request):
                 },
             )
     else:
-        return render(request, "Register.html")
+        return render(request, "register.html")
 
 
 def logout(request):
@@ -218,6 +218,29 @@ def blog(request):
         return redirect("/login.html")
 
 
+def delete_blogs(request):
+
+    if request.user.is_authenticated:
+
+        username = request.user.username
+        if BlogModel.objects.all().exists():
+            blogs = BlogModel.objects.all().delete()
+            return render(
+                request,
+                "success.html",
+                {
+                    "message": "Blogs are deleted successfully",
+                    "redirect_url": "/blog.html",
+                    "username": username,
+                    "blogs": blogs,
+                },
+            )
+        else:
+            return render(request, "blog.html")
+    else:
+        return redirect("/login.html")
+
+
 def blog_single_post(request):
     if request.user.is_authenticated:
         username = request.user.username
@@ -237,6 +260,29 @@ def industries(request):
         return render(
             request, "industries.html", {"industries": industries, "username": username}
         )
+    else:
+        return redirect("/login.html")
+
+
+def delete_industries(request):
+    if request.user.is_authenticated:
+
+        username = request.user.username
+        if IndustryModel.objects.all().exists():
+
+            industries = IndustryModel.objects.all().delete()
+            return render(
+                request,
+                "success.html",
+                {
+                    "message": "Industries are deleted successfully",
+                    "redirect_url": "/industries.html",
+                    "username": username,
+                    "industries": industries,
+                },
+            )
+        else:
+            return render(request, "industries.html")
     else:
         return redirect("/login.html")
 
