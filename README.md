@@ -94,10 +94,10 @@ A total of 31 UI tests have been written using the Selenium library. These tests
 
 ### Methods Used and Their Counts
 
-- `NAME`: 67 times
 - `CLASS_NAME`: 48 times
+- `NAME`: 33 times
 - `XPATH`: 28 times
-- `CSS_SELECTOR`: 35 times
+- `CSS_SELECTOR`: 18 times
 - `ID`: 13 times
 - `TAG_NAME`: 13 times
 

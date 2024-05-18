@@ -18,16 +18,15 @@ class SliderScrollAccordionTests(unittest.TestCase):
         self.driver.implicitly_wait(10)
 
     def test_slider(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+     
+        self.driver.get(self.URL)
 
         sleep(2)
 
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -35,11 +34,11 @@ class SliderScrollAccordionTests(unittest.TestCase):
         password_field.send_keys("1234")
         submit_button.click()
 
-        driver.execute_script("window.scrollBy(0, 300);")
+        self.driver.execute_script("window.scrollBy(0, 300);")
 
         sleep(2)
 
-        stories = driver.find_element(
+        stories = self.driver.find_element(
             By.XPATH, "/html/body/div/section[7]/div/div[2]/div/div/div/div"
         ).find_elements(By.CLASS_NAME, "portfolio-item")
 
@@ -50,13 +49,13 @@ class SliderScrollAccordionTests(unittest.TestCase):
             if "slick-active" in story.get_attribute("class"):
                 slick_actives.append(story)
 
-        next_button = driver.find_element(By.XPATH, "//*[@id='slick-slide-control71']")
+        next_button = self.driver.find_element(By.XPATH, "//*[@id='slick-slide-control71']")
 
         next_button.click()
 
         sleep(2)
 
-        stories = driver.find_element(
+        stories = self.driver.find_element(
             By.XPATH, "/html/body/div/section[7]/div/div[2]/div/div/div/div"
         ).find_elements(By.CLASS_NAME, "portfolio-item")
 
@@ -76,16 +75,15 @@ class SliderScrollAccordionTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_scroll(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+       
+        self.driver.get(self.URL)
 
         sleep(2)
 
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -95,11 +93,11 @@ class SliderScrollAccordionTests(unittest.TestCase):
 
         sleep(2)
 
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
         sleep(2)
 
-        scrool_to_btn = driver.find_element(By.ID, "scrollTopBtn")
+        scrool_to_btn = self.driver.find_element(By.ID, "scrollTopBtn")
 
         is_active = "actived" in scrool_to_btn.get_attribute("class")
 
@@ -119,16 +117,17 @@ class SliderScrollAccordionTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_accordion(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+        
+        sleep(15)
+
+        self.driver.get(self.URL)
 
         sleep(2)
 
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -138,19 +137,19 @@ class SliderScrollAccordionTests(unittest.TestCase):
 
         sleep(2)
 
-        driver.find_element(By.XPATH, "//*[@id='mainNavigation']/ul/li[2]/a").click()
+        self.driver.find_element(By.XPATH, "//*[@id='mainNavigation']/ul/li[2]/a").click()
 
         sleep(2)
 
-        driver.find_element(
+        self.driver.find_element(
             By.XPATH, "//*[@id='mainNavigation']/ul/li[2]/ul/li[6]/a"
         ).click()
 
-        driver.execute_script("window.scrollBy(0, 300);")
+        self.driver.execute_script("window.scrollBy(0, 300);")
 
         sleep(2)
 
-        accordion = driver.find_element(By.CLASS_NAME, "accordion__header")
+        accordion = self.driver.find_element(By.CLASS_NAME, "accordion__header")
 
         accordion.click()
 

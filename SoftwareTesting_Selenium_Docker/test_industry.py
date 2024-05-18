@@ -5,6 +5,7 @@ from time import sleep
 from django.contrib.auth.models import User
 from SoftwareTesting_Selenium_Docker.models.industry_model import IndustryModel
 from django.core import management
+from SoftwareTesting_Selenium_Docker.utils import login
 
 
 class TestIndustry(unittest.TestCase):
@@ -22,50 +23,35 @@ class TestIndustry(unittest.TestCase):
 
     
     def test_add_industry_with_valid_credentials(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        login(self.driver, self.URL)
 
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
-
-        sleep(2)
-
-        driver.get(url + "/add-industry.html")
+        self.driver.get(self.URL + "/add-industry.html")
 
         sleep(1)
 
-        image_field = driver.find_element(By.ID, "image")
-        title_field = driver.find_element(By.ID, "title")
-        description_field = driver.find_element(By.ID, "description-content")
-        list_item_field = driver.find_element(By.ID, "list-items")
+        image_field = self.driver.find_element(By.ID, "image")
+        title_field = self.driver.find_element(By.ID, "title")
+        description_field = self.driver.find_element(By.ID, "description-content")
+        list_item_field = self.driver.find_element(By.ID, "list-items")
 
-        history_timeline_subtitle_field = driver.find_element(
+        history_timeline_subtitle_field = self.driver.find_element(
             By.ID, "history-timeline-subtitle"
         )
 
-        history_timeline_title_field = driver.find_element(
+        history_timeline_title_field = self.driver.find_element(
             By.ID, "history-timeline-title"
         )
 
-        history_timeline_year_field = driver.find_element(
+        history_timeline_year_field = self.driver.find_element(
             By.ID, "history-timeline-year"
         )
 
-        history_timeline_description_field = driver.find_element(
+        history_timeline_description_field = self.driver.find_element(
             By.ID, "history-timeline-description"
         )
 
-        form_submit_button = driver.find_element(
+        form_submit_button = self.driver.find_element(
             By.XPATH,
             "/html/body/div/section[2]/div/div/div/div/section/div/div/div/div/form/div/div[10]/button",
         )
@@ -130,7 +116,7 @@ class TestIndustry(unittest.TestCase):
         # Assert success message
 
         success_message = (
-            driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
         )
 
         condition = success_message == "inudstry is saved successfully"
@@ -144,29 +130,15 @@ class TestIndustry(unittest.TestCase):
 
     def test_add_industry_with_invalid_credentials(self):
 
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+        sleep(15)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        login(self.driver, self.URL)
 
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
+        self.driver.get(self.URL + "/add-industry.html")
 
         sleep(2)
 
-        driver.get(url + "/add-industry.html")
-
-        sleep(2)
-
-        form_submit_button = driver.find_element(
+        form_submit_button = self.driver.find_element(
             By.XPATH,
             "/html/body/div/section[2]/div/div/div/div/section/div/div/div/div/form/div/div[10]/button",
         )
@@ -178,7 +150,7 @@ class TestIndustry(unittest.TestCase):
         # Assert error message
 
         error_message = (
-            driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
         )
 
         condition = error_message == "oops! that page can’t be found."
@@ -191,28 +163,13 @@ class TestIndustry(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_open_single_industry(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+        login(self.driver, self.URL)
 
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
+        self.driver.get(self.URL + "/industries.html")
 
         sleep(2)
 
-        driver.get(url + "/industries.html")
-
-        sleep(2)
-
-        industry = driver.find_element(
+        industry = self.driver.find_element(
             By.XPATH, "/html/body/div/section[2]/div/div[3]/div[1]/div/div[2]/a"
         )
 
@@ -220,14 +177,14 @@ class TestIndustry(unittest.TestCase):
 
         sleep(3)
 
-        driver.execute_script("window.scrollBy(0, 300);")
+        self.driver.execute_script("window.scrollBy(0, 300);")
 
         sleep(2)
 
         # Assert industry page
 
         started_button_text = (
-            driver.find_element(
+            self.driver.find_element(
                 By.XPATH,
                 "/html/body/div/section[1]/div/div/div/div/a[1]/span",
             )
@@ -246,33 +203,17 @@ class TestIndustry(unittest.TestCase):
 
     def test_list_of_industries(self):
 
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
-
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
-
-        sleep(2)
+        login(self.driver, self.URL)
 
         # self.handle_loaddata()
 
-        driver.get(url + "/industries.html")
+        self.driver.get(self.URL + "/industries.html")
 
         sleep(2)
 
-        driver.execute_script("window.scrollBy(0, 100);")
+        self.driver.execute_script("window.scrollBy(0, 100);")
 
-        industry_items = driver.find_elements(By.CLASS_NAME, "service-item")
+        industry_items = self.driver.find_elements(By.CLASS_NAME, "service-item")
 
         print("============LIST OF INDUSTRIES==================")
         i = 0
@@ -307,43 +248,27 @@ class TestIndustry(unittest.TestCase):
 
     def test_zno_industry(self):
 
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+        login(self.driver, self.URL)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
+        self.driver.get(self.URL + "/industries.html")
 
         sleep(2)
 
-        driver.get(url + "/industries.html")
-
-        sleep(2)
-
-        driver.find_element(By.CLASS_NAME, "delete-industries").find_element(
+        self.driver.find_element(By.CLASS_NAME, "delete-industries").find_element(
             By.TAG_NAME, "button"
         ).click()
 
         sleep(2)
 
-        industry_title = driver.find_element(By.CLASS_NAME, "pagetitle__heading")
+        industry_title = self.driver.find_element(By.CLASS_NAME, "pagetitle__heading")
 
-        driver.execute_script(
+        self.driver.execute_script(
             "arguments[0].innerText = 'NO INDUSTRY TEST IS RUNNING...';", industry_title
         )
 
-        industry_items = driver.find_elements(By.CLASS_NAME, "service-item")
+        industry_items = self.driver.find_elements(By.CLASS_NAME, "service-item")
 
-        driver.execute_script("window.scrollBy(0, 100);")
+        self.driver.execute_script("window.scrollBy(0, 100);")
 
         condition = len(industry_items) == 0
 

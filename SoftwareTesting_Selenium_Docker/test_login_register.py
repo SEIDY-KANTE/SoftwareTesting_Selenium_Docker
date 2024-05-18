@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from time import sleep
 from django.contrib.auth.models import User
+from SoftwareTesting_Selenium_Docker.utils import login
 
 
 class LoginRegisterTests(unittest.TestCase):
@@ -20,27 +21,12 @@ class LoginRegisterTests(unittest.TestCase):
         self.driver.implicitly_wait(10)
 
     def test_login_with_valid_credentials(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
-
-        sleep(2)
+        login(self.driver, self.URL)
 
         # Assert login success
         index_page_title = (
-            driver.find_element(By.CLASS_NAME, "slide__title").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "slide__title").text.strip().lower()
         )
 
         condition = index_page_title == "help challenge critical activities"
@@ -54,15 +40,14 @@ class LoginRegisterTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_login_with_invalid_credentials(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+      
+        self.driver.get(self.URL)
 
         # Invalid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -74,7 +59,7 @@ class LoginRegisterTests(unittest.TestCase):
 
         # Assert error message
         error_message = (
-            driver.find_element(By.CLASS_NAME, "error-message").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-message").text.strip().lower()
         )
 
         condition = error_message == "invalid username or password!"
@@ -87,15 +72,16 @@ class LoginRegisterTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_login_with_empty_fields(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+
+        sleep(15)
+      
+        self.driver.get(self.URL)
 
         # Empty fields
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -107,7 +93,7 @@ class LoginRegisterTests(unittest.TestCase):
 
         # Assert error message
         error_message = (
-            driver.find_element(By.CLASS_NAME, "error-message").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-message").text.strip().lower()
         )
 
         condition = error_message == "all fields are required"
@@ -120,17 +106,17 @@ class LoginRegisterTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_register_with_valid_data(self):
-        driver = self.driver
+        
         url = self.URL + "/register.html"
-        driver.get(url)
+        self.driver.get(url)
 
         # Valid registration data
 
-        username_field = driver.find_element(By.NAME, "username")
-        email_fiel = driver.find_element(By.NAME, "email")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        email_fiel = self.driver.find_element(By.NAME, "email")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#register-popup > div > form > button > span"
         )
 
@@ -142,7 +128,7 @@ class LoginRegisterTests(unittest.TestCase):
         sleep(2)
         # Assert registration success
         success_message = (
-            driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
         )
 
         condition = success_message == "user is registered successfully"
@@ -155,17 +141,17 @@ class LoginRegisterTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_register_with_invalid_data(self):
-        driver = self.driver
+    
         url = self.URL + "/register.html"
-        driver.get(url)
+        self.driver.get(url)
 
         # Invalid registration data
 
-        username_field = driver.find_element(By.NAME, "username")
-        email_fiel = driver.find_element(By.NAME, "email")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        email_fiel = self.driver.find_element(By.NAME, "email")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#register-popup > div > form > button > span"
         )
 
@@ -178,7 +164,7 @@ class LoginRegisterTests(unittest.TestCase):
 
         # Assert error message
         error_message = (
-            driver.find_element(By.CLASS_NAME, "error-message").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-message").text.strip().lower()
         )
 
         condition = error_message == "all fields are required"
@@ -191,16 +177,16 @@ class LoginRegisterTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_register_with_existing_username(self):
-        driver = self.driver
+        
         url = self.URL + "/register.html"
-        driver.get(url)
+        self.driver.get(url)
 
         # Registration with existing username
-        username_field = driver.find_element(By.NAME, "username")
-        email_fiel = driver.find_element(By.NAME, "email")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        email_fiel = self.driver.find_element(By.NAME, "email")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#register-popup > div > form > button > span"
         )
 
@@ -213,7 +199,7 @@ class LoginRegisterTests(unittest.TestCase):
 
         # Assert error message
         error_message = (
-            driver.find_element(By.CLASS_NAME, "error-message").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-message").text.strip().lower()
         )
 
         condition = error_message == "username or email already exists!"
@@ -226,14 +212,13 @@ class LoginRegisterTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_logout(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+    
+        self.driver.get(self.URL)
 
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -243,7 +228,7 @@ class LoginRegisterTests(unittest.TestCase):
 
         sleep(3)
 
-        logout_button = driver.find_element(
+        logout_button = self.driver.find_element(
             By.XPATH, "/html/body/div/header/nav/div/div[1]/ul/li[2]/ul/li[2]/button"
         )
 
@@ -252,7 +237,7 @@ class LoginRegisterTests(unittest.TestCase):
         sleep(2)
 
         user_profile = (
-            driver.find_element(
+            self.driver.find_element(
                 By.XPATH, "/html/body/div/header/nav/div/div/ul/li/ul/li/button/span"
             )
             .text.strip()

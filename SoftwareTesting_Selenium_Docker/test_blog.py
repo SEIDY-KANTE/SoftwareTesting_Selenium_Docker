@@ -5,6 +5,7 @@ from time import sleep
 from django.contrib.auth.models import User
 from SoftwareTesting_Selenium_Docker.models.blog_model import BlogModel
 from django.core import management
+from SoftwareTesting_Selenium_Docker.utils import login
 
 
 class BlogTests(unittest.TestCase):
@@ -20,33 +21,21 @@ class BlogTests(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
 
+
     def test_add_blog_with_valid_credentials(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        login(self.driver, self.URL)
 
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
-
-        driver.get(url + "/add-blog.html")
+        self.driver.get(self.URL + "/add-blog.html")
 
         sleep(2)
 
-        image_field = driver.find_element(By.NAME, "image")
-        blog_title = driver.find_element(By.NAME, "title")
-        content_field = driver.find_element(By.NAME, "content")
-        author_field = driver.find_element(By.NAME, "author")
+        image_field = self.driver.find_element(By.NAME, "image")
+        blog_title = self.driver.find_element(By.NAME, "title")
+        content_field = self.driver.find_element(By.NAME, "content")
+        author_field = self.driver.find_element(By.NAME, "author")
 
-        form_submit_button = driver.find_element(
+        form_submit_button = self.driver.find_element(
             By.CSS_SELECTOR,
             "body > div > section.services-layout1.services-carousel.pb-100.bg-img > div > div > div > div > section > div > div > div > div > form > div > div.col-12 > button",
         )
@@ -80,7 +69,7 @@ class BlogTests(unittest.TestCase):
         sleep(2)
 
         success_message = (
-            driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
         )
 
         condition = success_message == "blog post is saved successfully"
@@ -94,29 +83,15 @@ class BlogTests(unittest.TestCase):
 
     def test_add_blog_with_invalid_credentials(self):
 
-        sleep(20)
+        sleep(15)
 
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+        login(self.driver, self.URL)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
-
-        driver.get(url + "/add-blog.html")
+        self.driver.get(self.URL + "/add-blog.html")
 
         sleep(3)
 
-        form_submit_button = driver.find_element(
+        form_submit_button = self.driver.find_element(
             By.CSS_SELECTOR,
             "body > div > section.services-layout1.services-carousel.pb-100.bg-img > div > div > div > div > section > div > div > div > div > form > div > div.col-12 > button",
         )
@@ -127,7 +102,7 @@ class BlogTests(unittest.TestCase):
 
         # Assert error message
         error_message = (
-            driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
+            self.driver.find_element(By.CLASS_NAME, "error-title").text.strip().lower()
         )
 
         # print("Error message: ", error_message)
@@ -142,36 +117,23 @@ class BlogTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_select_option(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+       
+        login(self.driver, self.URL)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
-
-        driver.get(url + "/add-blog.html")
+        self.driver.get(self.URL + "/add-blog.html")
 
         sleep(3)
 
-        list_options = driver.find_element(By.CLASS_NAME, "list").find_elements(
+        list_options = self.driver.find_element(By.CLASS_NAME, "list").find_elements(
             By.TAG_NAME, "li"
         )
 
-        current_option = driver.find_element(By.CLASS_NAME, "current")
+        current_option = self.driver.find_element(By.CLASS_NAME, "current")
 
         for option in list_options:
             if option.get_attribute("data-value") == "Business":
 
-                driver.execute_script(
+                self.driver.execute_script(
                     "arguments[0].innerText = 'Business'", current_option
                 )
 
@@ -179,7 +141,7 @@ class BlogTests(unittest.TestCase):
 
                 break
 
-        selected_option = driver.find_element(
+        selected_option = self.driver.find_element(
             By.XPATH,
             "/html/body/div/section[2]/div/div/div/div/section/div/div/div/div/form/div/div[4]/div/div/span",
         )
@@ -194,29 +156,14 @@ class BlogTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_open_single_blog(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+       
+        login(self.driver, self.URL)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
-
-        sleep(2)
-
-        driver.get(url + "/blog.html")
+        self.driver.get(self.URL + "/blog.html")
 
         sleep(3)
 
-        blog_post = driver.find_element(
+        blog_post = self.driver.find_element(
             By.XPATH, "/html/body/div/section[2]/div/div[2]/div[1]/div/div[2]/a"
         )
 
@@ -224,11 +171,11 @@ class BlogTests(unittest.TestCase):
 
         sleep(3)
 
-        driver.execute_script("window.scrollBy(0, 200);")
+        self.driver.execute_script("window.scrollBy(0, 200);")
 
         sleep(2)
 
-        is_sidebar_visible = driver.find_element(
+        is_sidebar_visible = self.driver.find_element(
             By.CLASS_NAME, "sidebar"
         ).is_displayed()
 
@@ -240,32 +187,18 @@ class BlogTests(unittest.TestCase):
         self.assertTrue(is_sidebar_visible)
 
     def test_list_of_blogs(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
-
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
-
-        sleep(2)
+       
+        login(self.driver, self.URL)
 
         # self.handle_loaddata()
 
-        driver.get(url + "/blog.html")
+        self.driver.get(self.URL + "/blog.html")
 
         sleep(2)
 
-        driver.execute_script("window.scrollBy(0, 100);")
+        self.driver.execute_script("window.scrollBy(0, 100);")
 
-        blog_posts = driver.find_elements(By.CLASS_NAME, "post-item")
+        blog_posts = self.driver.find_elements(By.CLASS_NAME, "post-item")
 
         print("==========LIST OF BLOG POST================")
         i = 0
@@ -308,41 +241,25 @@ class BlogTests(unittest.TestCase):
 
     def test_zno_blog_post(self):
 
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+        login(self.driver, self.URL)
 
-        # Valid credentials
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
-
-        submit_button = driver.find_element(
-            By.CSS_SELECTOR, "#login-popup > div > form > button > span"
-        )
-
-        username_field.send_keys("Seidy")
-        password_field.send_keys("1234")
-        submit_button.click()
+        self.driver.get(self.URL + "/blog.html")
 
         sleep(2)
 
-        driver.get(url + "/blog.html")
-
-        sleep(2)
-
-        driver.find_element(By.CLASS_NAME, "delete-blogs").find_element(
+        self.driver.find_element(By.CLASS_NAME, "delete-blogs").find_element(
             By.TAG_NAME, "button"
         ).click()
 
         sleep(2)
 
-        blog_title = driver.find_element(By.CLASS_NAME, "pagetitle__heading")
+        blog_title = self.driver.find_element(By.CLASS_NAME, "pagetitle__heading")
 
-        driver.execute_script(
+        self.driver.execute_script(
             "arguments[0].innerText = 'NO BLOG POST TEST IS RUNNING...';", blog_title
         )
 
-        blog_posts = driver.find_elements(By.CLASS_NAME, "post-item")
+        blog_posts = self.driver.find_elements(By.CLASS_NAME, "post-item")
 
         condition = len(blog_posts) == 0
 

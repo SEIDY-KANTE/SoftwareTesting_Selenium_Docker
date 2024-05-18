@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from django.contrib.auth.models import User
 from time import sleep
-
+from SoftwareTesting_Selenium_Docker.utils import login
 
 class PopupTests(unittest.TestCase):
 
@@ -19,13 +19,13 @@ class PopupTests(unittest.TestCase):
 
     def test_login_popup_active(self):
 
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+        sleep(15)
+
+        self.driver.get(self.URL)
 
         sleep(3)
 
-        login_popup_class = driver.find_element(By.ID, "login-popup").get_attribute(
+        login_popup_class = self.driver.find_element(By.ID, "login-popup").get_attribute(
             "class"
         )
 
@@ -40,16 +40,14 @@ class PopupTests(unittest.TestCase):
 
     def test_search_popup_active(self):
 
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+        self.driver.get(self.URL)
 
         sleep(2)
 
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -59,11 +57,11 @@ class PopupTests(unittest.TestCase):
 
         sleep(2)
 
-        driver.find_element(By.CLASS_NAME, "icon-search").click()
+        self.driver.find_element(By.CLASS_NAME, "icon-search").click()
 
         sleep(2)
 
-        search_popup = driver.find_element(By.CLASS_NAME, "search-popup")
+        search_popup = self.driver.find_element(By.CLASS_NAME, "search-popup")
 
         search_popup_class = search_popup.get_attribute("class")
 
@@ -78,16 +76,15 @@ class PopupTests(unittest.TestCase):
         self.assertTrue(condition)
 
     def test_search_popup_open_close(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+       
+        self.driver.get(self.URL)
 
         sleep(2)
 
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -97,15 +94,15 @@ class PopupTests(unittest.TestCase):
 
         sleep(2)
 
-        driver.find_element(By.CLASS_NAME, "icon-search").click()
+        self.driver.find_element(By.CLASS_NAME, "icon-search").click()
 
         sleep(2)
 
-        search_popup = driver.find_element(By.CLASS_NAME, "search-popup")
+        search_popup = self.driver.find_element(By.CLASS_NAME, "search-popup")
 
         search_popup_active = search_popup.get_attribute("class")
 
-        driver.find_element(By.CLASS_NAME, "search-popup__close").click()
+        self.driver.find_element(By.CLASS_NAME, "search-popup__close").click()
 
         sleep(3)
 
@@ -124,16 +121,15 @@ class PopupTests(unittest.TestCase):
 
 
     def test_video_popup(self):
-        driver = self.driver
-        url = self.URL
-        driver.get(url)
+     
+        self.driver.get(self.URL)
 
         sleep(2)
 
-        username_field = driver.find_element(By.NAME, "username")
-        password_field = driver.find_element(By.NAME, "password")
+        username_field = self.driver.find_element(By.NAME, "username")
+        password_field = self.driver.find_element(By.NAME, "password")
 
-        submit_button = driver.find_element(
+        submit_button = self.driver.find_element(
             By.CSS_SELECTOR, "#login-popup > div > form > button > span"
         )
 
@@ -143,15 +139,15 @@ class PopupTests(unittest.TestCase):
 
         sleep(2)
 
-        driver.find_element(By.XPATH, "/html/body/div/header/nav/div/div[1]/ul/li[2]/ul/li[1]/a").click()
+        self.driver.find_element(By.XPATH, "/html/body/div/header/nav/div/div[1]/ul/li[2]/ul/li[1]/a").click()
 
         sleep(2)
 
-        driver.find_element(By.CLASS_NAME, "popup-video").click()
+        self.driver.find_element(By.CLASS_NAME, "popup-video").click()
 
         sleep(2)
 
-        condition = driver.find_element(By.CLASS_NAME, "mfp-ready").is_displayed()
+        condition = self.driver.find_element(By.CLASS_NAME, "mfp-ready").is_displayed()
 
         if condition:
             print("Video popup test successfull")
